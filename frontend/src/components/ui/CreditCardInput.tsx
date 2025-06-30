@@ -305,4 +305,7 @@ CreditCardInput.displayName = 'CreditCardInput';
 
 // Export types and utilities for external use
 export type { CreditCardInputProps, CardType };
-export { detectCardType, validateCardNumber, getCardPattern }; 
+export { detectCardType, validateCardNumber, getCardPattern, formatCardNumber };
+
+// Additional utility function for card icons
+export const getCardIcon = (cardType: CardType | null) => renderCardIcon(cardType); 

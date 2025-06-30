@@ -15,6 +15,12 @@ declare module 'styled-components' {
       caution: string;
       danger: string;
       catastrophe: string;
+      background: {
+        primary: string;
+        secondary: string;
+        tertiary: string;
+        surface: string;
+      };
       glass: {
         background: string;
         border: string;
@@ -24,6 +30,12 @@ declare module 'styled-components' {
         primary: string;
         secondary: string;
         tertiary: string;
+        inverse: string;
+      };
+      border: {
+        primary: string;
+        secondary: string;
+        accent: string;
       };
     };
     typography: {
@@ -70,6 +82,7 @@ declare module 'styled-components' {
       glass: string;
       glow: string;
       danger: string;
+      elevated: string;
     };
     animations: {
       duration: {

@@ -71,9 +71,9 @@ interface Choice {
   id: string;
   text: string;
   impact?: {
-    pDoom: number;
-    dystopia: number;
-    pathPosition: number;
+    pDoomChange: number;
+    dystopiaChange: number;
+    pathChange: number;
     description: string;
   };
 }
@@ -91,7 +91,7 @@ interface ScenarioViewerProps {
   description?: string;
   choices?: Choice[];
   onChoiceSelect?: (choice: Choice) => void;
-  onChoice?: (impacts: { pDoom: number; dystopia: number; pathPosition: number; }) => void;
+  onChoice?: (choiceData: { pDoomChange: number; dystopiaChange: number; pathChange: number; }) => void;
   onReset?: () => void;
   gameState?: GameState;
   visible?: boolean;
@@ -101,10 +101,10 @@ export function ScenarioViewer({
   title = "The AI Safety Summit", 
   description = "World leaders gather to discuss AI governance. Your decision as a key policy advisor will shape global AI development...",
   choices = [
-    { id: '1', text: "Push for immediate international AI moratorium", impact: { pDoom: -5, dystopia: +8, pathPosition: +12, description: "Reduces chaos risk but increases authoritarian control" }},
-    { id: '2', text: "Advocate for gradual safety regulations", impact: { pDoom: -2, dystopia: +2, pathPosition: +3, description: "Moderate approach with balanced risks" }},
-    { id: '3', text: "Support accelerated AI development with safety oversight", impact: { pDoom: +4, dystopia: -1, pathPosition: -5, description: "Higher chaos risk but maintains freedom" }},
-    { id: '4', text: "Remain neutral and observe", impact: { pDoom: +1, dystopia: 0, pathPosition: 0, description: "Maintains current position but loses influence" }}
+    { id: '1', text: "Push for immediate international AI moratorium", impact: { pDoomChange: -0.05, dystopiaChange: +0.08, pathChange: +0.12, description: "Reduces chaos risk but increases authoritarian control" }},
+    { id: '2', text: "Advocate for gradual safety regulations", impact: { pDoomChange: -0.02, dystopiaChange: +0.02, pathChange: +0.03, description: "Moderate approach with balanced risks" }},
+    { id: '3', text: "Support accelerated AI development with safety oversight", impact: { pDoomChange: +0.04, dystopiaChange: -0.01, pathChange: -0.05, description: "Higher chaos risk but maintains freedom" }},
+    { id: '4', text: "Remain neutral and observe", impact: { pDoomChange: +0.01, dystopiaChange: 0, pathChange: 0, description: "Maintains current position but loses influence" }}
   ],
   onChoiceSelect,
   onChoice,
@@ -136,9 +136,9 @@ export function ScenarioViewer({
               onChoiceSelect?.(choice);
               if (choice.impact && onChoice) {
                 onChoice({
-                  pDoom: choice.impact.pDoom,
-                  dystopia: choice.impact.dystopia,
-                  pathPosition: choice.impact.pathPosition
+                  pDoomChange: choice.impact.pDoomChange,
+                  dystopiaChange: choice.impact.dystopiaChange,
+                  pathChange: choice.impact.pathChange
                 });
               }
             }}

@@ -22,12 +22,15 @@ const Overlay = styled(motion.div)`
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 1rem;
+  
+  will-change: opacity;
+  transform: translateZ(0);
 `;
 
 const ModalContainer = styled(motion.div)<{ $size: string }>`
@@ -41,6 +44,9 @@ const ModalContainer = styled(motion.div)<{ $size: string }>`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  
+  will-change: transform, opacity;
+  transform: translateZ(0);
   
   ${props => {
     switch (props.$size) {
@@ -96,7 +102,13 @@ const CloseButton = styled.button`
   cursor: pointer;
   padding: 0.5rem;
   border-radius: ${props => props.theme.borderRadius.md};
-  transition: all ${props => props.theme.animations.duration.fast} ${props => props.theme.animations.easing.easeOut};
+  
+  transition-property: background-color, color, transform;
+  transition-duration: ${props => props.theme.animations.duration.fast};
+  transition-timing-function: ${props => props.theme.animations.easing.easeOut};
+  
+  will-change: transform;
+  transform: translateZ(0);
   
   &:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -126,30 +138,25 @@ const Content = styled.div`
 
 const overlayVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1 }
+  visible: { opacity: 1 },
+  exit: { opacity: 0 }
 };
 
 const modalVariants = {
   hidden: { 
     opacity: 0, 
-    scale: 0.95,
-    y: 20
+    scale: 0.96,
+    y: 8
   },
   visible: { 
     opacity: 1, 
     scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.3
-    }
+    y: 0
   },
   exit: { 
     opacity: 0, 
-    scale: 0.95,
-    y: 20,
-    transition: {
-      duration: 0.2
-    }
+    scale: 0.96,
+    y: 8
   }
 };
 
@@ -185,16 +192,20 @@ export function Modal({
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, closeOnEscape, onClose]);
   
-  // Prevent body scroll when modal is open
+  // Prevent body scroll when modal is open - optimized to reduce layout shifts
   useEffect(() => {
     if (isOpen) {
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     }
     
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
   }, [isOpen]);
   
@@ -205,13 +216,13 @@ export function Modal({
   };
   
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <Overlay
           variants={overlayVariants}
           initial="hidden"
           animate="visible"
-          exit="hidden"
+          exit="exit"
           onClick={handleOverlayClick}
         >
           <ModalContainer
@@ -221,29 +232,19 @@ export function Modal({
             animate="visible"
             exit="exit"
             className={className}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={title ? 'modal-title' : undefined}
+            onClick={(e) => e.stopPropagation()}
           >
             {(title || showCloseButton) && (
               <Header>
-                {title && (
-                  <Title id="modal-title">{title}</Title>
-                )}
+                {title && <Title>{title}</Title>}
                 {showCloseButton && (
-                  <CloseButton
-                    onClick={onClose}
-                    aria-label="Close modal"
-                  >
+                  <CloseButton onClick={onClose} aria-label="Close modal">
                     <CloseIcon />
                   </CloseButton>
                 )}
               </Header>
             )}
-            
-            <Content>
-              {children}
-            </Content>
+            <Content>{children}</Content>
           </ModalContainer>
         </Overlay>
       )}

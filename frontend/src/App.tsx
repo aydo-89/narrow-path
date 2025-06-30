@@ -1,9 +1,9 @@
 import React, { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { GlobalStyles } from './styles/GlobalStyles';
-import { theme } from './styles/theme';
 import { NarrowPathVisualization } from './components/3d/NarrowPathVisualization';
 import { GameUI } from './components/ui/GameUI';
 import { ScenarioViewer } from './components/scenarios/ScenarioViewer';
@@ -14,7 +14,8 @@ const AppContainer = styled.div`
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
+  background: ${props => props.theme.colors.background.primary};
+  transition: background ${props => props.theme.animations.duration.normal} ${props => props.theme.animations.easing.easeOut};
 `;
 
 const CanvasContainer = styled.div`
@@ -50,63 +51,69 @@ interface GameState {
 }
 
 function App() {
-  // Initialize game state
+  // Game state management
   const [gameState, setGameState] = useState<GameState>({
-    pDoom: 15,
-    dystopiaLevel: 20,
-    pathPosition: -5,
-    gamePhase: 'menu',
+    pDoom: 0.1, // 10% initial P(doom)
+    dystopiaLevel: 0.1, // 10% initial dystopia level
+    pathPosition: 0.5, // Start in the middle of the narrow path
+    gamePhase: 'menu'
   });
 
-  // Handle scenario choices that affect the dual-axis system
-  const handleChoice = (impacts: {
-    pDoom: number;
-    dystopia: number;
-    pathPosition: number;
+  // Game logic handlers
+  const handleChoice = (choiceData: {
+    pDoomChange: number;
+    dystopiaChange: number;
+    pathChange: number;
   }) => {
     setGameState(prev => {
-      const newPDoom = Math.max(0, Math.min(100, prev.pDoom + impacts.pDoom));
-      const newDystopia = Math.max(0, Math.min(100, prev.dystopiaLevel + impacts.dystopia));
-      const newPathPosition = Math.max(-50, Math.min(50, prev.pathPosition + impacts.pathPosition));
-      
+      const newPDoom = Math.max(0, Math.min(1, prev.pDoom + choiceData.pDoomChange));
+      const newDystopia = Math.max(0, Math.min(1, prev.dystopiaLevel + choiceData.dystopiaChange));
+      const newPosition = Math.max(0, Math.min(1, prev.pathPosition + choiceData.pathChange));
+
       // Check for game over conditions
       let gamePhase: GameState['gamePhase'] = 'playing';
       let gameOverReason: GameState['gameOverReason'];
-      
-      if (newPDoom >= 100) {
+
+      if (newPDoom >= 0.9) {
         gamePhase = 'gameOver';
         gameOverReason = 'doom';
-      } else if (newDystopia >= 100) {
+      } else if (newDystopia >= 0.9) {
         gamePhase = 'gameOver';
         gameOverReason = 'dystopia';
+      } else if (newPosition <= 0.1 || newPosition >= 0.9) {
+        gamePhase = 'gameOver';
+        gameOverReason = newPosition <= 0.1 ? 'doom' : 'dystopia';
       }
-      
+
       return {
         ...prev,
         pDoom: newPDoom,
         dystopiaLevel: newDystopia,
-        pathPosition: newPathPosition,
+        pathPosition: newPosition,
         gamePhase,
-        gameOverReason,
+        gameOverReason
       };
     });
   };
 
   const handleStartScenario = () => {
-    setGameState(prev => ({ ...prev, gamePhase: 'playing' }));
+    setGameState(prev => ({
+      ...prev,
+      gamePhase: 'playing'
+    }));
   };
 
   const handleResetGame = () => {
     setGameState({
-      pDoom: 15,
-      dystopiaLevel: 20,
-      pathPosition: -5,
-      gamePhase: 'menu',
+      pDoom: 0.1,
+      dystopiaLevel: 0.1,
+      pathPosition: 0.5,
+      gamePhase: 'menu'
     });
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider defaultMode="dark" enableSystemDetection={true}>
       <GlobalStyles />
       <Router>
         <AppContainer>

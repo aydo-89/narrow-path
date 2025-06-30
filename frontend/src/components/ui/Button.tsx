@@ -147,7 +147,15 @@ const StyledButton = styled(motion.button)<{
   
   backdrop-filter: blur(20px);
   cursor: pointer;
-  transition: all ${props => props.theme.animations.duration.normal} ${props => props.theme.animations.easing.easeOut};
+  
+  /* Performance optimizations: specific transitions instead of 'all' */
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  transition-duration: ${props => props.theme.animations.duration.normal};
+  transition-timing-function: ${props => props.theme.animations.easing.easeOut};
+  
+  /* GPU acceleration hints */
+  will-change: transform, opacity;
+  transform: translateZ(0);
   
   ${props => getVariantStyles(props.$variant)}
   ${props => getSizeStyles(props.$size)}
@@ -183,7 +191,10 @@ const LoadingSpinner = styled.div`
   border: 2px solid transparent;
   border-top: 2px solid currentColor;
   border-radius: 50%;
+  
+  /* Use transform animation for better performance */
   animation: spin 1s linear infinite;
+  will-change: transform;
   
   @keyframes spin {
     to {
@@ -216,8 +227,8 @@ export function Button({
       whileHover={!disabled && !loading ? { scale: 1.02 } : {}}
       whileTap={!disabled && !loading ? { scale: 0.98 } : {}}
       transition={{ 
-        duration: 0.1,
-        ease: "easeInOut"
+        duration: 0.2,
+        ease: "easeOut"
       }}
     >
       {loading && <LoadingSpinner />}

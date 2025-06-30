@@ -42,4 +42,9 @@ export {
 export { 
   validateExpiryDate,
   formatExpiryDate 
-} from './ExpiryInput'; 
+} from './ExpiryInput';
+
+// Game UI Components
+export { GameUI } from './GameUI';
+export { ThemeToggle } from './ThemeToggle';
+export { FormDemo } from './FormDemo'; 

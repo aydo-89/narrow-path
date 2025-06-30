@@ -28,7 +28,7 @@ const DemoContainer = styled(motion.div)`
 
 const Title = styled.h2`
   font-family: ${props => props.theme.typography.fonts.primary};
-  font-size: ${props => props.theme.typography.sizes.xl2};
+  font-size: ${props => props.theme.typography.sizes['2xl']};
   font-weight: ${props => props.theme.typography.weights.bold};
   color: ${props => props.theme.colors.text.primary};
   text-align: center;
@@ -122,6 +122,19 @@ interface FormData {
   terms: boolean;
 }
 
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  plan?: string;
+  country?: string;
+  cardNumber?: string;
+  expiry?: string;
+  cvv?: string;
+  terms?: string;
+}
+
 export const FormDemo: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
@@ -138,7 +151,7 @@ export const FormDemo: React.FC = () => {
   });
 
   const [detectedCardType, setDetectedCardType] = useState<CardType | null>(null);
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const handleInputChange = (field: keyof FormData) => (
     e: React.ChangeEvent<HTMLInputElement>
@@ -148,8 +161,8 @@ export const FormDemo: React.FC = () => {
       [field]: e.target.value
     }));
     
-    // Clear error when user starts typing
-    if (errors[field]) {
+    // Clear error when user starts typing (only for fields that can have errors)
+    if (field in errors && errors[field as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
         [field]: undefined
@@ -181,7 +194,7 @@ export const FormDemo: React.FC = () => {
     e.preventDefault();
     
     // Basic validation
-    const newErrors: Partial<FormData> = {};
+    const newErrors: FormErrors = {};
     
     if (!formData.firstName) newErrors.firstName = 'First name is required';
     if (!formData.lastName) newErrors.lastName = 'Last name is required';
