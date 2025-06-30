@@ -1,0 +1,44 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dev-debug.log
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS specific
+.DS_Store
+
+# AI Assistant configurations (local development environment)
+.cursor/
+.clinerules/
+.roo/
+.roomodes
+.trae/
+.windsurf/
+
+# Taskmaster - exclude local state and generated files
+.taskmaster/state.json
+.taskmaster/config.json
+.taskmaster/reports/
+.taskmaster/tasks/*.backup
+.taskmaster/tasks/*.bak
+.taskmaster/tasks/*.json.backup
+
+# MCP configuration files (contain API keys)
+**/mcp.json

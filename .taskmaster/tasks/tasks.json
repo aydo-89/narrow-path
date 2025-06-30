@@ -1,0 +1,1338 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Project Infrastructure",
+        "description": "Initialize the project repository with React frontend and Node.js backend, configure Three.js for 3D graphics, and set up the development environment.",
+        "details": "1. Create a new Git repository\n2. Set up React application with TypeScript\n3. Configure Three.js for 3D graphics rendering\n4. Initialize Node.js backend with Express\n5. Set up PostgreSQL database and Redis for caching\n6. Configure WebSocket connections for real-time features\n7. Set up Cloudflare CDN integration\n8. Create CI/CD pipeline for automated testing and deployment\n9. Configure development, staging, and production environments\n10. Document the tech stack and architecture",
+        "testStrategy": "1. Verify all services start correctly\n2. Run integration tests to ensure frontend-backend communication\n3. Test WebSocket connections\n4. Verify database connections and Redis caching\n5. Test CDN configuration with sample assets\n6. Ensure CI/CD pipeline successfully builds and deploys the application",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Frontend Environment Setup",
+            "description": "Initialize the frontend project using a framework such as React, Angular, or Vue.js. Set up the project structure and install required dependencies.",
+            "dependencies": [],
+            "details": "Use tools like Create React App for React. Install packages such as axios for API calls and react-router-dom for routing. Ensure the project structure supports scalability and maintainability.\n<info added on 2025-06-30T15:20:01.435Z>\n# Frontend Environment Setup Complete\n\n## React + TypeScript Setup\n- Successfully created React app with TypeScript template\n- Installed core dependencies: @react-three/fiber, @react-three/drei, three, @types/three\n- Added routing, API, animation, and PWA packages: react-router-dom, axios, socket.io-client, framer-motion, styled-components, workbox-webpack-plugin\n\n## Project Structure\n- Created comprehensive folder structure following best practices\n- Organized components: 3d/, ui/, scenarios/\n- Set up assets folders: models/, textures/, sounds/\n- Created services/, hooks/, types/, styles/ directories\n\n## Core Components Implemented\n- **PDoomGauge**: Risk gauge visualization\n  - Uses vertical fill gauge instead of clock metaphor\n  - Clear P(doom) percentage display with proper notation\n  - Risk zones: Safe, Caution, Danger, Critical\n  - Animated particles and pulsing effects\n\n## UI Components\n- LoadingScreen: Elegant loading with progress bar\n- ScenarioViewer: Decision interface with 4-choice selection\n- GameUI: Glass morphism overlay with top bar and action panels\n\n## Styling System\n- GlobalStyles: Elegant Apocalypse theme implementation\n- Theme: Comprehensive color palette and design tokens\n- Mobile-responsive design patterns\n\n## Key Design Decisions\n- Changed from \"P(Doom) Clock\" to \"P(doom) Gauge\" \n  - Fixes notation and eliminates confusion\n  - Uses intuitive vertical fill meter\n- Glass morphism UI design for sophisticated look\n- Mobile-first responsive approach\n\nAll core frontend infrastructure is in place and ready for testing.\n</info added on 2025-06-30T15:20:01.435Z>\n<info added on 2025-06-30T15:24:03.052Z>\n# Architectural Breakthrough: Dual-Axis Risk System\n\n## Core Game Mechanic Redesign\n- Replaced single P(doom) gauge with dual-axis \"Narrow Path\" system\n- Implemented Tristan Harris concept of navigating between two extremes\n- Created mathematical model for balancing between chaos and control\n\n## New Lose Conditions\n- **P(doom) ≥ 100%**: CHAOS/DOOM scenario (uncontrolled decentralized AI)\n- **Dystopia Level ≥ 100%**: DYSTOPIA/CONTROL scenario (surveillance state)\n- Player must navigate the \"Narrow Path\" between these extremes\n\n## Visual Implementation\n- Developed NarrowPathVisualization component replacing PDoomGauge\n- Designed intuitive visual system:\n  - Left side: Red gradient (Chaos/Doom risk)\n  - Right side: Blue gradient (Dystopia/Control risk)\n  - Center: Green zone (safe \"Narrow Path\")\n  - Dynamic player position indicator\n  - Animated risk bars for both dimensions\n  - Distinct game over states for both failure modes\n\n## Decision System Updates\n- Enhanced ScenarioViewer to track 3 dimensions:\n  - pDoom: Chaos/decentralization risk\n  - dystopia: Authoritarian control risk\n  - pathPosition: Player's position (-50 to +50)\n- Implemented choice system with multi-dimensional consequences\n- Created example scenarios showing risk tradeoffs\n\n## Frontend Architecture Adjustments\n- Updated state management to handle dual-axis system\n- Modified TypeScript interfaces for new game mechanics\n- Refactored UI components to support the Narrow Path visualization\n- Enhanced animation system for dual risk indicators\n\nThis architectural change significantly improves game philosophy, requiring players to navigate between two dangerous extremes rather than simply preventing AI doom.\n</info added on 2025-06-30T15:24:03.052Z>\n<info added on 2025-06-30T15:32:33.680Z>\n# Frontend Integration Complete: Dual-Axis System Implementation\n\n## GameUI.tsx Integration\n- Successfully implemented GameUI with dual-axis risk system support\n- Added comprehensive props: pDoom, dystopiaLevel, pathPosition\n- Created detailed risk displays for all three metrics\n- Implemented helper functions for risk level calculation and path status\n- Enhanced info panel with dual-axis mechanics explanations\n- Added clear game over condition explanations\n- Maintained responsive design with full mobile support\n\n## App.tsx State Management\n- Implemented complete GameState interface tracking all risk dimensions\n- Created handleChoice function for processing scenario impacts\n- Integrated proper game over detection logic (P(doom) ≥ 100% OR Dystopia ≥ 100%)\n- Connected GameUI and NarrowPathVisualization with shared state\n- Added state bounds enforcement (0-100% for risks, -50 to +50 for path position)\n\n## TypeScript Integration\n- Created proper styled-components theme typing in types/styled.d.ts\n- Resolved all TypeScript errors and linting issues\n- Updated component interfaces with dual-axis props support\n- Connected ScenarioViewer with choice impact handling system\n\n## Component Integration\n- Successfully connected all components through App.tsx\n- Implemented proper props passing between components\n- Established state management with real-time updates\n- Maintained React Router integration\n\n## Testing Status\n- Development server started successfully\n- All imports resolved correctly\n- No compilation errors\n- Ready for browser testing\n\nNext steps include browser testing, verifying 3D visualization responsiveness to state changes, completing visual polish, and proceeding to Game State Management implementation.\n</info added on 2025-06-30T15:32:33.680Z>\n<info added on 2025-06-30T15:36:31.635Z>\n# UI Responsiveness and Mobile Strategy Updates\n\n## Desktop UI Overflow Resolution\n- Changed TopBar from centered to full-width (left: 2rem; right: 2rem)\n- Added flex: 1 to StatusContainer for proper space distribution\n- Reduced gaps and padding throughout for more compact layout\n- Shortened \"Position\" to \"Path\" label to save space\n- Implemented progressive responsive compression on smaller screens\n- Added min-width: 0 for proper text handling in flex containers\n\n## Mobile App Strategy\n- Created comprehensive mobile-strategy.md document\n- Implementation plan:\n  - Phase 1: PWA conversion (immediate) using existing workbox-webpack-plugin\n  - Phase 2: React Native conversion (2-4 weeks) with 90% code reuse\n  - Phase 3: Native features integration (push notifications, offline mode, haptics)\n- Distribution strategy for iOS/Android app stores\n- Revenue models: freemium, corporate licensing, educational partnerships\n\n## Technical Mobile Considerations\n- Three.js compatibility confirmed via react-native-three\n- Touch-optimized UI components in development\n- Glass morphism design elements translate well to mobile interfaces\n- Dual-axis gameplay mechanics ideal for touch interactions\n\nUI is now properly responsive and mobile-ready, positioned to proceed with PWA setup or continue current web development path.\n</info added on 2025-06-30T15:36:31.635Z>",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Frontend Environment Variables Configuration",
+            "description": "Define and document all necessary environment variables for the frontend, such as API endpoints and feature flags.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a .env file (e.g., REACT_APP_API_URL). Document each variable's purpose and usage in the project README or a dedicated documentation file.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Frontend Security Configuration",
+            "description": "Implement security best practices in the frontend, including secure storage of sensitive data and use of HTTPS.",
+            "dependencies": [
+              2
+            ],
+            "details": "Ensure no secrets are stored in the frontend code. Use HTTPS for all API calls. Implement Content Security Policy (CSP) headers if possible.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Backend Environment Setup",
+            "description": "Initialize the backend project using a framework such as Node.js/Express, Django, or Ruby on Rails. Set up the project structure and install required dependencies.",
+            "dependencies": [],
+            "details": "For Node.js, use npm init and install packages like express, mongoose, dotenv, helmet, cors, winston, nodemon, jest, and supertest. Organize code into modules for routes, middleware, and error handling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Backend Environment Variables Configuration",
+            "description": "Define and document all necessary environment variables for the backend, such as database URIs, API keys, and secret tokens.",
+            "dependencies": [
+              4
+            ],
+            "details": "Create a .env file (e.g., DB_URI, JWT_SECRET). Document each variable's purpose and usage in the backend documentation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Backend Security Configuration",
+            "description": "Implement security best practices in the backend, including HTTP headers, CORS, authentication, and input validation.",
+            "dependencies": [
+              5
+            ],
+            "details": "Use helmet for HTTP headers, cors for cross-origin requests, and implement authentication (JWT or OAuth). Validate and sanitize all user inputs.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Database Setup and Security",
+            "description": "Provision the database (e.g., MongoDB, PostgreSQL, MySQL), configure access, and set up security controls.",
+            "dependencies": [],
+            "details": "Create database users with least privilege, enable SSL connections, and configure backups. Document schema and access patterns.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "CDN and Static Asset Configuration",
+            "description": "Set up a Content Delivery Network (CDN) for serving static assets and configure caching and security settings.",
+            "dependencies": [
+              3,
+              7
+            ],
+            "details": "Choose a CDN provider (e.g., Cloudflare, AWS CloudFront). Configure asset caching, HTTPS, and access controls. Document CDN usage and invalidation procedures.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 9,
+            "title": "CI/CD Pipeline Setup",
+            "description": "Configure Continuous Integration and Continuous Deployment (CI/CD) pipelines for automated testing, building, and deployment.",
+            "dependencies": [],
+            "details": "Use tools like Jenkins, GitHub Actions, or GitLab CI. Set up build, test, and deploy stages. Store secrets securely and document pipeline steps.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 10,
+            "title": "Documentation and Knowledge Base",
+            "description": "Create comprehensive documentation covering setup, environment variables, security configurations, and operational procedures for all components.",
+            "dependencies": [],
+            "details": "Maintain a central documentation repository (e.g., README, Wiki). Include architecture diagrams, setup guides, and troubleshooting sections.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Implement Core UI Framework",
+        "description": "Polish and complete the glass morphism UI framework with the specified color palette, typography, and animations as per the 'Elegant Apocalypse' visual theme.",
+        "status": "in-progress",
+        "dependencies": [
+          1
+        ],
+        "priority": "high",
+        "details": "1. ✅ Create a design system based on the 'Elegant Apocalypse' theme\n2. ✅ Implement the color palette: deep blues, amber warnings, clinical whites, danger reds\n3. ✅ Set up typography using Inter/SF Pro sans-serif fonts\n4. ✅ Create glass morphism components with subtle animations\n5. Complete responsive layouts for mobile-first approach\n6. Finish implementing UI component library by adding missing components\n7. Refine animation system for transitions and effects\n8. Optimize performance to ensure 60fps on mid-range smartphones\n9. Complete dark/light mode support\n10. Create documentation for the UI framework",
+        "testStrategy": "1. Visual regression testing for UI components\n2. Performance testing on various devices to ensure 60fps\n3. Accessibility testing for WCAG compliance\n4. Cross-browser compatibility testing\n5. Responsive design testing across different screen sizes",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Audit existing UI components",
+            "description": "Review all implemented components to identify gaps and areas for improvement",
+            "status": "done",
+            "dependencies": [],
+            "details": "<info added on 2025-06-30T16:39:34.263Z>\n# UI Component Audit Results\n\n## Current Component Inventory\n\n### Well-Implemented Components:\n- **GameUI.tsx** - Main HUD with glass morphism styling, responsive design, dual-axis risk display\n- **NarrowPathVisualization.tsx** - Core 3D visualization using Three.js/React Three Fiber\n- **ScenarioViewer.tsx** - Choice interface with impact preview\n- **LoadingScreen.tsx** - Simple loading component\n\n### Design System Foundation:\n- **theme.ts** - Design tokens with \"Elegant Apocalypse\" color palette\n- **GlobalStyles.ts** - Base styling setup\n\n## Identified Gaps & Issues\n\n### Missing Core UI Components:\n1. Button component library\n2. Modal/Dialog system\n3. Form inputs\n4. Navigation components (menu, tabs, breadcrumbs)\n5. Card components\n6. Progress indicators\n7. Notification/Toast system\n8. Tooltip system\n\n### Responsive Design Issues:\n- GameUI mobile layout optimization\n- 3D visualization touch controls\n- ScenarioViewer mobile-specific layout\n\n### Performance Concerns:\n- Component virtualization for large lists\n- Animation performance optimization\n- Bundle size optimization\n\n### Accessibility Gaps:\n- ARIA labels for screen reader support\n- Keyboard navigation\n- Focus management\n- Color contrast improvements\n\n### Missing Features for $1/Play Model:\n- Payment flow components\n- Achievement components\n- Analytics dashboard\n- Social sharing components\n- Educational content components\n\n## Priority Recommendations:\n1. **Immediate**: Create reusable Button, Modal, and Card components\n2. **High**: Build payment flow UI components\n3. **Medium**: Improve mobile responsiveness and add accessibility\n4. **Low**: Add advanced features like tooltips and notifications\n</info added on 2025-06-30T16:39:34.263Z>",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement missing UI components",
+            "description": "Create any remaining components needed for the complete UI library",
+            "status": "done",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Optimize animations for performance",
+            "description": "Review and refine animations to ensure they maintain 60fps on target devices",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Complete responsive layout system",
+            "description": "Finalize the responsive layout system to ensure proper display across all device sizes",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Finalize dark/light mode implementation",
+            "description": "Complete theme switching functionality and ensure all components properly support both modes",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create UI framework documentation",
+            "description": "Document all components, usage patterns, and theming options for developers",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Develop P(Doom) Clock Visualization",
+        "description": "Create the centerpiece 'Narrow Path' dual-axis visualization system that shows player position between Chaos and Dystopia, with dynamic effects reflecting current risk levels.",
+        "status": "pending",
+        "dependencies": [
+          1,
+          2,
+          24
+        ],
+        "priority": "high",
+        "details": "1. Implement the dual-axis 'Narrow Path' visualization system as the main visual centerpiece\n2. Create visual representation of player position between Chaos (-50) and Dystopia (+50)\n3. Develop two independent risk meters: P(doom) and Dystopia Level (both 0-100%)\n4. Implement dynamic color system: Red (chaos) ← Green (narrow path) → Blue (dystopia)\n5. Create real-time animations showing risk level changes\n6. Develop clear lose condition indicators for both extremes\n7. Implement player position indicator moving along the narrow path\n8. Create ambient particle effects that respond to risk levels\n9. Design distinct game over states: \"DOOM\" vs \"DYSTOPIA\"\n10. Optimize visualization for performance across devices",
+        "testStrategy": "1. Performance testing on various devices\n2. Visual testing across different risk levels and positions on the narrow path\n3. Animation smoothness verification for player movement and transitions\n4. Verify correct color transitions between chaos (red), narrow path (green), and dystopia (blue)\n5. Test game over state transitions and visuals\n6. Verify integration with game state for real-time updates\n7. Test responsiveness of particle effects to changing risk levels",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement NarrowPathVisualization 3D component",
+            "description": "Build on the already started NarrowPathVisualization 3D component to create the core visual framework",
+            "status": "done",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Develop dual risk bars with gradients",
+            "description": "Create visual meters for both P(doom) and Dystopia Level (0-100%) with appropriate color gradients",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create player sphere indicator with position tracking",
+            "description": "Implement the visual representation of player position between Chaos (-50) and Dystopia (+50)",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement dynamic background zones",
+            "description": "Create background visual elements that intensify with risk levels on both axes",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Design typography for status and warnings",
+            "description": "Implement text elements showing current status and providing warnings as player approaches extremes",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create game over state visualizations",
+            "description": "Design distinct visual experiences for the \"DOOM\" and \"DYSTOPIA\" game over states",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Integrate with game state",
+            "description": "Connect visualization to game state for real-time updates of player position and risk levels",
+            "status": "in-progress",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Optimize for performance",
+            "description": "Ensure the visualization runs smoothly across different devices with appropriate fallbacks",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Create 3D Environment System",
+        "description": "Develop the five main 3D environments (UN Assembly, AI Lab, Situation Room, Boardroom, News Studio) with dynamic lighting and camera systems.",
+        "details": "1. Model the five 3D environments in Blender/Maya\n2. Implement materials and textures for realistic rendering\n3. Create dynamic lighting system for each environment\n4. Develop camera system with cinematic movements\n5. Implement ambient audio design for each environment\n6. Create transition effects between environments\n7. Optimize 3D assets for mobile performance\n8. Implement level-of-detail (LOD) system for performance\n9. Create environment-specific particle effects\n10. Develop environment interaction points for gameplay",
+        "testStrategy": "1. Performance testing on target devices\n2. Visual fidelity verification\n3. Camera movement smoothness testing\n4. Audio integration testing\n5. Load time optimization testing",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement Character System",
+        "description": "Develop the photorealistic avatar system for key figures including AI researchers, world leaders, corporate executives, and military advisors with unique animation sets.",
+        "details": "1. Design and model photorealistic character avatars\n2. Implement facial animation system\n3. Create character-specific animation sets\n4. Develop dialogue animation system\n5. Implement character customization options\n6. Create character state management system\n7. Develop character interaction system\n8. Implement voice acting integration\n9. Create character emotion system that responds to scenario context\n10. Optimize character rendering for mobile performance",
+        "testStrategy": "1. Animation smoothness testing\n2. Facial animation realism verification\n3. Voice sync testing with animations\n4. Performance testing with multiple characters\n5. Character state transition testing",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Develop Decision Theater System",
+        "description": "Create the immersive decision theater with cinematic experiences, dynamic camera work, and ambient audio that responds to tension levels.",
+        "details": "1. Implement scenario presentation system\n2. Create decision interface with multiple choice options\n3. Develop cinematic camera system for dramatic moments\n4. Implement dynamic lighting based on tension level\n5. Create ambient audio system that responds to p(doom) level\n6. Develop transition effects between decision points\n7. Implement feedback system for player choices\n8. Create consequence visualization system\n9. Develop branching narrative system\n10. Implement decision history tracking",
+        "testStrategy": "1. User testing for decision clarity\n2. Performance testing during cinematic sequences\n3. Audio-visual sync testing\n4. Branching logic verification\n5. Decision history accuracy testing",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3,
+          4,
+          5,
+          25,
+          26
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Mirror AI System",
+        "description": "Develop the revolutionary Mirror AI system that learns player decision patterns across all tracked game state dimensions (P(doom), Dystopia, Credibility, Resources, Knowledge, Relationships), creating a personalized AI opponent for negotiation scenarios that challenges the player's multi-dimensional risk navigation and strategic framework. The AI must understand compound consequences, redemption arc strategies, and tipping point navigation, adapting dynamically to player sophistication and integrating global player data via the leaderboard system.",
+        "status": "pending",
+        "dependencies": [
+          1,
+          6,
+          24,
+          26
+        ],
+        "priority": "high",
+        "details": "1. Integrate with OpenAI/Anthropic APIs\n2. Implement multi-dimensional player decision pattern tracking (P(doom), Dystopia, Credibility, Resources, Knowledge, Relationships)\n3. Develop AI behavior modeling based on player's risk tolerance, information gathering, relationship building, and resource management across all axes\n4. Create personalized AI opponent generation that mirrors player's strategic philosophy and adapts to redemption arc and rare ending discovery\n5. Implement negotiation interface for AI interactions with complex, multi-dimensional tradeoffs\n6. Develop dialogue generation system that references all tracked dimensions and challenges the player's holistic strategy\n7. Create visual representation of the Mirror AI\n8. Implement fallback systems for API failures\n9. Develop caching system for API responses\n10. Create analytics for player-AI interaction patterns across all tracked dimensions\n11. Implement pattern recognition for player types (chaos-preferring, dystopia-preferring, credibility-maximizing, resource-hoarding, relationship-focused, knowledge-seeking, narrow-path, etc.)\n12. Track player's argumentative style regarding risk/reward, information, and relationship rationalization\n13. Monitor decision speed for multi-dimensional tradeoff decisions\n14. Measure risk and resource thresholds at which player shows concern on any axis\n15. Integrate with leaderboard system to learn from global player patterns and successful strategies, scaling AI challenge for experienced players while remaining accessible for newcomers",
+        "testStrategy": "1. API integration testing\n2. Multi-dimensional pattern recognition accuracy testing\n3. Dialogue generation quality verification with references to all tracked dimensions\n4. Performance testing during AI interactions with complex, multi-dimensional tradeoff scenarios\n5. Fallback system verification\n6. Testing AI's ability to challenge player's holistic strategic framework\n7. Verification of player type classification accuracy across all axes\n8. Testing of personalized argument generation based on player's multi-dimensional navigation philosophy\n9. Leaderboard integration testing to ensure AI adapts to global player strategies and scales difficulty appropriately",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement multi-dimensional player decision tracking",
+            "description": "Create a system to track and analyze player decisions across all tracked axes: P(doom), Dystopia, Credibility, Resources, Knowledge, and Relationships.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Expand the tracking system to capture player choices and state changes for each dimension, enabling compound consequence analysis.",
+            "testStrategy": "Verify accurate logging and retrieval of player decisions and state across all axes."
+          },
+          {
+            "id": 2,
+            "title": "Develop player strategic profiling",
+            "description": "Build algorithms to identify player's preferred path position and classify player types based on risk, information, relationship, and resource strategies.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Profile players not only by chaos/dystopia tendency but also by their approaches to credibility, resource management, knowledge acquisition, and relationship building.",
+            "testStrategy": "Test classification accuracy for a variety of player archetypes and mixed strategies."
+          },
+          {
+            "id": 3,
+            "title": "Enhance dialogue generation for multi-dimensional arguments",
+            "description": "Modify the dialogue system to generate arguments that reference all tracked dimensions and challenge the player's holistic strategy.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Ensure AI can reference compound consequences, redemption arcs, and tipping points in its negotiation and opposition.",
+            "testStrategy": "Evaluate dialogue quality and relevance in scenarios involving complex, multi-dimensional tradeoffs."
+          },
+          {
+            "id": 4,
+            "title": "Implement decision speed and threshold tracking for all axes",
+            "description": "Create mechanisms to monitor how quickly players make tradeoff decisions and at what point they show concern on any tracked axis.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Track response times and threshold triggers for risk, resource, credibility, knowledge, and relationship concerns.",
+            "testStrategy": "Test system responsiveness and accuracy in detecting player hesitation or concern across all dimensions."
+          },
+          {
+            "id": 5,
+            "title": "Design multi-dimensional negotiation scenarios",
+            "description": "Develop negotiation scenarios that involve meaningful tradeoffs between all tracked axes, not just chaos and dystopia risks.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Scenarios should allow for compound consequences, redemption opportunities, and rare ending paths.",
+            "testStrategy": "Verify scenario complexity and ensure all axes are meaningfully engaged in negotiation outcomes."
+          },
+          {
+            "id": 6,
+            "title": "Integrate Mirror AI with leaderboard system",
+            "description": "Enable the Mirror AI to learn from global player patterns and successful strategies via the leaderboard, scaling challenge for experienced players and maintaining accessibility for newcomers.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Mirror AI should analyze top player strategies and adapt its negotiation and opposition tactics accordingly.",
+            "testStrategy": "Test AI adaptation to evolving global strategies and verify difficulty scaling based on player experience."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Create Reality Blur Mechanics",
+        "description": "Implement the system that blends real-world AI developments with game content, including deepfakes and requiring players to identify real vs. synthetic information.",
+        "details": "1. Develop news feed integration system\n2. Create API for real AI development news\n3. Implement deepfake content generation\n4. Develop content mixing algorithm for real/synthetic information\n5. Create identification challenge interface\n6. Implement scoring system for correct identifications\n7. Develop difficulty progression for reality blur challenges\n8. Create visual cues for epistemic breakdown simulation\n9. Implement feedback system for player performance\n10. Develop analytics for player identification accuracy",
+        "testStrategy": "1. Content integration testing\n2. API reliability testing\n3. Content mixing algorithm verification\n4. User testing for challenge difficulty\n5. Performance testing during content loading",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Collective Intelligence Gameplay",
+        "description": "Develop the global voting system where critical moments become real-time global votes and aggregate choices shift the baseline p(doom) for new players.",
+        "details": "1. Implement real-time voting system using WebSockets\n2. Create voting interface for critical moments\n3. Develop vote aggregation system\n4. Implement p(doom) adjustment based on collective choices\n5. Create visualization of global voting patterns\n6. Develop democracy engine to show how humanity votes\n7. Implement collective action problem scenarios\n8. Create analytics dashboard for voting patterns\n9. Develop caching system for vote results\n10. Implement fallback for offline players",
+        "testStrategy": "1. WebSocket reliability testing\n2. Vote aggregation accuracy verification\n3. Load testing with simulated voters\n4. P(doom) adjustment verification\n5. Offline mode testing",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Develop Temporal Warning System",
+        "description": "Create the system where failed players send cryptic warnings to past players, requiring them to decide whether to trust these fragmented warnings.",
+        "details": "1. Implement player failure tracking system\n2. Create warning message generation algorithm\n3. Develop warning delivery system to active players\n4. Implement warning visualization interface\n5. Create trust decision interface\n6. Develop consequence system for warning decisions\n7. Implement warning history tracking\n8. Create analytics for warning trust patterns\n9. Develop difficulty progression for warnings\n10. Implement warning categorization system",
+        "testStrategy": "1. Warning generation quality testing\n2. Delivery system reliability verification\n3. User testing for warning clarity/mystery balance\n4. Consequence system verification\n5. Analytics accuracy testing",
+        "priority": "low",
+        "dependencies": [
+          1,
+          6,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Implement Core Scenarios (Act 1)",
+        "description": "Develop a complex, interconnected set of scenarios for Act 1: The Agent Era (2025), expanding from three to seven scenarios with branching trees, multi-dimensional consequences, and compound effects where early choices influence later options. Each scenario must have 8-12 variants to prevent community gaming while testing the same AI safety principles with different optimal answers based on randomized context variables. Scenarios include: Opening Crisis, Advisory Council Formation, Agent Licensing Debate, Deepfake Elections, Corporate AI Race, Bioweapons Query, and First Tipping Point. Each scenario must feature 4-5 meaningful choices with hidden consequences, redemption paths, and meta-choice scenarios about information gathering and advisor consultation. The system should support multi-axis risk and opportunity tracking, not limited to P(doom) and Dystopia Level, and allow for cumulative and emergent narrative outcomes.",
+        "status": "pending",
+        "dependencies": [
+          4,
+          5,
+          6,
+          24,
+          25,
+          26,
+          27
+        ],
+        "priority": "high",
+        "details": "1. Design and implement 7 interconnected scenarios for Act 1, each with 8-12 variants and a branching structure with 4-5 meaningful choices per scenario\n2. Ensure each variant tests the same AI safety principle but has different optimal answers based on randomized context variables\n3. Maintain equal difficulty across all variants while including sufficient context variation to prevent pattern recognition\n4. Expand consequence modeling to support multi-dimensional outcomes beyond dual-axis risk (e.g., public trust, innovation, geopolitical stability)\n5. Implement compound effect logic so early scenario choices influence later scenario options and outcomes\n6. Integrate meta-choice scenarios for information gathering and advisor consultation, with hidden and delayed consequences\n7. Ensure each scenario includes redemption paths and hidden consequences for choices\n8. Develop scenario scripts, character dialogues, and environment setups for all scenarios and their variants (56-84 unique scenario variants total)\n9. Create decision points with visual previews and risk/opportunity indicators for all tracked axes\n10. Implement visual and audio assets for each scenario, including risk/opportunity visualization\n11. Develop scenario-specific mechanics that highlight tradeoffs between multiple axes (chaos, control, trust, etc.)\n12. Implement transitions and cumulative path summaries, including the First Tipping Point where early choices converge\n13. Create analytics for player choices, tracking movement on all axes and compound effects\n14. Coordinate expert review for all scenario variants to ensure balance and quality",
+        "testStrategy": "1. Narrative flow testing across all 7 scenarios and their variants, including branching and convergence at the First Tipping Point\n2. Verification of multi-dimensional consequence modeling and compound effect logic\n3. Risk/opportunity adjustment accuracy testing for all tracked axes\n4. Performance testing during complex scenes and visualizations\n5. User testing for scenario engagement, understanding of multi-axis and compound consequence concepts\n6. Ensure all choices present meaningful tradeoffs, with no purely good/bad options\n7. Test end-of-scenario and cumulative summaries for accuracy in displaying path position and emergent outcomes\n8. Validate hidden consequences and redemption paths are discoverable through play\n9. Test meta-choice scenarios for impact on information and advisor systems\n10. Verify that scenario variants maintain equal difficulty while having different optimal answers\n11. Test that sufficient context variation prevents pattern recognition and community gaming\n12. Validate that all variants of a scenario test the same core AI safety principle",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement dual-axis risk system framework",
+            "description": "Create the core system for tracking and updating both P(doom) and Dystopia Level values based on player choices.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Design visual risk preview system",
+            "description": "Create UI elements that show players the potential impact of their choices on both axes before they make a selection.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Develop Agent Deployment Decision scenario",
+            "description": "Implement the 2025 scenario with multiple paths affecting both axes, including options for free deployment, government licensing, and industry self-regulation.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop Deepfake Elections scenario",
+            "description": "Create scenario balancing misinformation chaos risks against surveillance control risks, with multiple decision points.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Develop Bioweapons Query scenario",
+            "description": "Implement scenario with choices between AI bioweapon research freedom and monitoring/restriction systems, each with dual-axis implications.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create end-of-scenario summary system",
+            "description": "Develop the UI and logic for displaying cumulative path position on both risk axes at the conclusion of each scenario.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement narrative elements explaining narrow path philosophy",
+            "description": "Create dialogue and story elements that help players understand the concept of navigating between chaos and control risks.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Expand scenario set and branching structure",
+            "description": "Design and implement the full set of 7 interconnected scenarios: Opening Crisis, Advisory Council Formation, Agent Licensing Debate, Deepfake Elections, Corporate AI Race, Bioweapons Query, and First Tipping Point. Ensure each scenario has 4-5 meaningful choices, branching paths, and supports compound effects from earlier decisions.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Scenarios must be interconnected, with early choices influencing later options and outcomes. Each scenario should include redemption paths and hidden consequences.",
+            "testStrategy": "Test all scenario branches for logical consistency, meaningful tradeoffs, and proper propagation of early choices to later scenarios."
+          },
+          {
+            "id": 9,
+            "title": "Implement multi-dimensional consequence and compound effect system",
+            "description": "Expand the consequence system to track and adjust multiple axes (e.g., public trust, innovation, geopolitical stability) and implement logic for compound effects where early choices impact later scenarios.",
+            "status": "pending",
+            "dependencies": [
+              1
+            ],
+            "details": "System should support tracking, displaying, and adjusting multiple risk and opportunity axes, and allow for emergent narrative outcomes.",
+            "testStrategy": "Verify accuracy of multi-axis tracking, correct application of compound effects, and emergent narrative logic."
+          },
+          {
+            "id": 10,
+            "title": "Develop meta-choice scenarios for information gathering and advisor consultation",
+            "description": "Create scenarios and mechanics where players can choose to gather information or consult advisors, with hidden and delayed consequences that affect later scenarios.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Meta-choices should influence available information, unlock or restrict options, and introduce hidden risks or opportunities.",
+            "testStrategy": "Test that meta-choices meaningfully impact scenario options and outcomes, and that hidden consequences are discoverable through play."
+          },
+          {
+            "id": 11,
+            "title": "Integrate redemption paths and hidden consequences in all scenarios",
+            "description": "Ensure every scenario includes at least one redemption path and multiple hidden consequences for player choices.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Redemption paths should allow players to recover from earlier mistakes; hidden consequences should be revealed through narrative or later events.",
+            "testStrategy": "Test discoverability and impact of redemption paths and hidden consequences across all scenarios."
+          },
+          {
+            "id": 12,
+            "title": "Design and implement scenario variants",
+            "description": "Create 8-12 variants for each of the 7 Act 1 scenarios (56-84 total variants) that test the same AI safety principles but have different optimal answers based on randomized context variables.",
+            "status": "pending",
+            "dependencies": [
+              3,
+              4,
+              5,
+              8
+            ],
+            "details": "Each variant must maintain equal difficulty while including sufficient context variation to prevent pattern recognition and community gaming. Example: Agent Regulation scenario with variants for economic boom (self-regulation optimal), post-incident fear (government oversight optimal), and international tension (cooperation optimal).",
+            "testStrategy": "Test that variants maintain consistent difficulty, have different optimal answers based on context, and effectively prevent pattern recognition while testing the same core principles."
+          },
+          {
+            "id": 13,
+            "title": "Develop variant randomization system",
+            "description": "Create a system that randomly selects scenario variants for each playthrough to prevent community gaming and ensure diverse player experiences.",
+            "status": "pending",
+            "dependencies": [
+              12
+            ],
+            "details": "System should track which variants players have seen to avoid immediate repetition and ensure balanced exposure to different optimal paths over multiple playthroughs.",
+            "testStrategy": "Test randomization distribution, verify that players don't see the same variants repeatedly, and confirm that the system prevents predictable patterns."
+          },
+          {
+            "id": 14,
+            "title": "Coordinate expert review process for scenario variants",
+            "description": "Establish a review process with AI safety and game design experts to evaluate all scenario variants for balance, quality, and educational value.",
+            "status": "pending",
+            "dependencies": [
+              12
+            ],
+            "details": "Create review templates, schedule expert review sessions, and implement a feedback integration process to refine variants based on expert input.",
+            "testStrategy": "Verify that all variants receive expert review, track implementation of expert feedback, and validate that variants maintain consistent quality and educational value."
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Implement Advanced Scenarios (Acts 2-4)",
+        "description": "Design and implement sophisticated, interconnected scenarios for Acts 2-4 that build on the foundation from Act 1. Each act must feature 5-6 scenarios with increasingly complex choice architecture, compound consequences from previous acts, and multiple pathways to redemption or failure. Scenarios should include tipping points, false victory traps, redemption opportunities, and meta-choices about information, alliances, and timing. The design must support a 1-in-million perfect ending probability, while providing multiple good and acceptable ending pathways.",
+        "status": "pending",
+        "dependencies": [
+          11,
+          24,
+          25,
+          26,
+          27
+        ],
+        "priority": "medium",
+        "details": "1. For each act (2-4), design 5-6 scenarios with escalating complexity and interconnected consequences.\n2. Develop branching choice architecture that compounds player decisions across acts, ensuring past actions meaningfully impact future scenarios.\n3. Integrate tipping point scenarios that can dramatically alter the narrative trajectory.\n4. Implement false victory traps and redemption opportunities, allowing players who made extreme choices to recover or face consequences.\n5. Create meta-choices involving information control, alliance formation, and timing of critical actions.\n6. Ensure scenario design supports multiple endings, including a highly improbable perfect ending and several good/acceptable outcomes.\n7. Act 2 (2027-2029): Focus on the corporate AI race, international tensions, and first major AI accidents.\n8. Act 3 (2030-2032): Center on potential AGI emergence, geopolitical power shifts, and critical alignment challenges.\n9. Act 4 (2033-2035): Culminate in a final convergence where all previous choices determine multiple possible endings.\n10. Develop a robust narrative continuity system to track and apply compound consequences across acts.\n11. Implement analytics to monitor player decisions, scenario outcomes, and ending distributions.",
+        "testStrategy": "1. Test scenario interconnectivity and compound consequence logic across acts.\n2. Verify the integrity and impact of branching choice architecture.\n3. Validate the presence and function of tipping points, false victory traps, and redemption opportunities.\n4. Ensure all meta-choice mechanics (information, alliances, timing) are accessible and impactful.\n5. Simulate multiple playthroughs to confirm the 1-in-million perfect ending is achievable and that multiple good/acceptable endings are present.\n6. Conduct narrative and emotional impact testing with diverse user groups.\n7. Perform performance and stability testing during high-complexity scenario transitions.",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Implement Easter Eggs & LessWrong References",
+        "description": "Create the hidden content including Clippy Corp scenario, Basilisk Warning, and other LessWrong references as achievements and special scenarios.",
+        "details": "1. Implement achievement system\n2. Create hidden scenario triggers\n3. Develop Clippy Corp paperclip maximizer scenario\n4. Implement Basilisk Warning information hazard achievement\n5. Create Goodhart's Law scenario examples\n6. Develop Mesa-Optimization and Instrumental Convergence references\n7. Implement MIRI-Tech Consulting appearances\n8. Create 'The Sequences' achievement tracking\n9. Develop Eliezer's Dilemma special scenario\n10. Implement Nick's Prediction and Stuart's Solution achievements",
+        "testStrategy": "1. Hidden content discovery testing\n2. Achievement trigger verification\n3. Special scenario content testing\n4. Performance testing during hidden content\n5. User testing for easter egg enjoyment",
+        "priority": "low",
+        "dependencies": [
+          11,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Develop Viral Sharing Features",
+        "description": "Implement the shareability features including cinematic endings, decision moments, P(doom) challenges, expert reactions, and prediction tracking.",
+        "details": "1. Create 30-second video summary generation\n2. Implement social media sharing integration\n3. Develop 'What would you do?' shareable scenarios\n4. Create P(doom) challenge system for friend competition\n5. Implement expert reaction generation using AI\n6. Develop prediction tracking against real-world events\n7. Create social proof elements (player counters, celebrity scores)\n8. Implement media coverage integration\n9. Develop engagement hooks (mystery, urgency, authority)\n10. Create analytics for sharing patterns",
+        "testStrategy": "1. Sharing functionality testing across platforms\n2. Video generation quality verification\n3. Challenge system functionality testing\n4. Social proof element accuracy testing\n5. User testing for sharing likelihood",
+        "priority": "high",
+        "dependencies": [
+          6,
+          11,
+          12
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement Monetization System",
+        "description": "Develop the monetization strategy including premium subscriptions, educational licenses, corporate training options, and merchandise store.",
+        "details": "1. Implement premium content gating system\n2. Create subscription management system\n3. Develop educational license management\n4. Create corporate training customization interface\n5. Implement merchandise store integration\n6. Develop payment processing system\n7. Create user account management\n8. Implement analytics for conversion tracking\n9. Develop A/B testing for monetization features\n10. Create reporting system for revenue streams",
+        "testStrategy": "1. Payment processing testing\n2. Content access verification for subscribers\n3. License management functionality testing\n4. Store integration testing\n5. Security testing for payment systems",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          11,
+          12,
+          14,
+          29
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "Implement Dual-Axis Risk System",
+        "description": "Expand the dual-axis risk tracking system into a comprehensive ending and scoring system. The system must monitor both P(doom) (chaos/decentralization risk) and Dystopia Level (authoritarian control risk), as well as additional dimensions: Credibility, Resources, Knowledge, and Relationships with key stakeholders. Players must navigate between extremes, with sophisticated feedback, multiple win and loss conditions, advanced scoring, analytics, and achievement tracking.",
+        "status": "pending",
+        "dependencies": [
+          1,
+          2,
+          6,
+          11
+        ],
+        "priority": "high",
+        "details": "1. Design the mathematical and scoring model for the multi-dimensional risk and outcome system:\n   - P(doom) axis representing chaos/decentralization (0-100%)\n   - Dystopia Level axis representing authoritarian control (0-100%)\n   - Additional tracked dimensions: Credibility, Resources, Knowledge, Relationships\n   - Define the 'narrow path' zone of acceptable values for all axes\n   - Implement formulas for how player decisions affect all tracked dimensions\n   - Model compound consequences and tipping point mechanics that can trigger rapid state changes\n\n2. Create the data structures to track all risk and resource dimensions:\n   - Implement state management for each tracked value\n   - Create functions to update values based on player choices and compound effects\n   - Develop threshold detection for critical values and tipping points\n   - Implement game over triggers when any axis reaches 100% or other critical failure conditions\n\n3. Develop a comprehensive ending system:\n   - Multiple win conditions:\n     - Perfect Deep Utopia ending (extremely rare, e.g., 1 in 1,000,000)\n     - Good Alignment endings (rare, e.g., 1 in 10,000)\n     - Acceptable Safety endings (uncommon, e.g., 1 in 1,000)\n     - Near Miss endings (common, e.g., 1 in 100)\n     - False Victory scenarios (where apparent success hides underlying failure)\n   - Unique narrative and gameplay outcomes for each ending, including chaos and dystopian failures\n   - Detection and handling of compound consequences and tipping points in determining endings\n\n4. Implement the visual and feedback system:\n   - Design a 2D graph/chart showing player position between extremes for all axes\n   - Visualize the 'narrow path' and danger zones for each dimension\n   - Add effects that intensify as players approach danger or tipping points\n   - Integrate real-time UI, audio, and haptic feedback reflecting all tracked values\n\n5. Create a sophisticated scoring and analytics system:\n   - Develop a scoring algorithm that rewards wise navigation, not just survival\n   - Factor in efficiency, risk minimization, resource management, and stakeholder relationships\n   - Track and display Path Mastery metrics showing player understanding of dual-axis navigation\n   - Generate detailed analytics of player paths, including heatmaps and decision patterns\n   - Implement a leaderboard system with sortable metrics and player rankings\n   - Add an achievement system for rare choice combinations and exceptional outcomes\n\n6. Integrate with scenario system:\n   - Modify existing scenarios to affect all tracked dimensions\n   - Create decision points that force tradeoffs between multiple axes\n   - Implement scenario outcomes that reflect the full multi-dimensional state\n   - Ensure scenario logic supports compound consequences and tipping point events\n\n7. Optimize performance:\n   - Ensure calculations and analytics do not impact frame rate\n   - Implement efficient update mechanisms for all feedback systems\n   - Create fallbacks for lower-end devices",
+        "testStrategy": "1. Unit testing for risk and scoring calculation accuracy:\n   - Verify mathematical and scoring models correctly calculate all tracked values\n   - Test boundary conditions (0% and 100% on all axes)\n   - Validate that player decisions and compound effects correctly modify all dimensions\n   - Ensure game over and ending triggers activate at appropriate thresholds\n\n2. Visual and feedback testing:\n   - Verify the visual representation accurately reflects current values for all axes\n   - Test color transitions and effects for each danger and tipping point zone\n   - Ensure the narrow path and all feedback mechanisms are clear and intuitive\n   - Validate that UI, audio, and haptic elements update in real-time with changes\n\n3. Integration testing with scenario system:\n   - Verify scenarios correctly modify all tracked dimensions\n   - Test decision points to ensure they create appropriate tradeoffs and compound effects\n   - Validate that narrative and ending content changes based on the full multi-dimensional state\n   - Ensure all ending scenarios trigger with appropriate content and analytics\n\n4. User experience testing:\n   - Conduct playtests to assess player understanding of the expanded system\n   - Gather feedback on the clarity of visual and scoring representation\n   - Test intuitiveness of the feedback and achievement systems\n   - Evaluate player ability to navigate the narrow path and pursue rare endings\n\n5. Performance testing:\n   - Measure frame rate impact of calculations, analytics, and visualizations\n   - Test on various device specifications\n   - Validate that analytics and feedback systems don't cause performance issues\n   - Ensure smooth transitions between risk and scoring states\n\n6. Edge case testing:\n   - Test rapid fluctuations and compound consequences across all tracked values\n   - Verify system handles extreme edge cases and tipping point events\n   - Validate recovery scenarios from high-risk or low-resource situations\n   - Test simultaneous high or low values on multiple axes\n   - Ensure leaderboard and achievement systems handle rare and edge outcomes",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Dual-Axis Risk Mathematical Model",
+            "description": "Develop the mathematical framework for the dual-axis risk system, defining the P(doom) and Dystopia Level axes, their scales, the 'narrow path' zone, and formulas for how player decisions affect both axes.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Specify axis ranges (0-100%), define the acceptable 'narrow path' region, and create mathematical relationships for how player actions shift risk values.",
+            "testStrategy": "Validate model logic with unit tests and simulated player actions to ensure risk values update as intended and the 'narrow path' is correctly defined."
+          },
+          {
+            "id": 2,
+            "title": "Implement State Management and Risk Tracking",
+            "description": "Create data structures and functions to track and update both risk dimensions in real time, including threshold detection and game over triggers.",
+            "status": "pending",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop state containers for P(doom) and Dystopia Level, implement update functions based on player choices, and set up logic for detecting when either axis reaches critical values.",
+            "testStrategy": "Write automated tests to confirm state updates, threshold detection, and correct triggering of game over conditions."
+          },
+          {
+            "id": 3,
+            "title": "Develop Game Over Scenarios and Narrative Content",
+            "description": "Create unique narrative and gameplay outcomes for chaos and dystopian endings, triggered when either risk axis reaches 100%.",
+            "status": "pending",
+            "dependencies": [
+              2
+            ],
+            "details": "Design and implement narrative branches and visual/audio cues for each failure mode, ensuring clear feedback to the player.",
+            "testStrategy": "Playtest to verify that each ending triggers under the correct conditions and that narrative content is displayed appropriately."
+          },
+          {
+            "id": 4,
+            "title": "Build Visual Representation and Feedback System",
+            "description": "Design and implement a 2D graph or chart to visually represent the player's position between risk extremes, including color-coded zones and dynamic effects.",
+            "status": "pending",
+            "dependencies": [
+              2
+            ],
+            "details": "Create a visual interface showing both axes, highlight the 'narrow path', and add effects that intensify as risk increases. Integrate real-time UI, audio, and haptic feedback.",
+            "testStrategy": "Conduct UI/UX testing to ensure visual and sensory feedback accurately reflects risk levels and enhances player awareness."
+          },
+          {
+            "id": 5,
+            "title": "Integrate Dual-Axis Risk with Scenario System",
+            "description": "Modify existing game scenarios to interact with both risk axes, introducing decision points that force tradeoffs and outcomes based on dual-axis positions.",
+            "status": "pending",
+            "dependencies": [
+              2
+            ],
+            "details": "Update scenario logic to affect both P(doom) and Dystopia Level, create new decision events, and ensure scenario outcomes reflect the current risk state.",
+            "testStrategy": "Test scenario branches to confirm correct risk adjustments and that player choices meaningfully impact both axes."
+          },
+          {
+            "id": 6,
+            "title": "Expand System to Track Additional Dimensions",
+            "description": "Add tracking for Credibility, Resources, Knowledge, and Relationships with key stakeholders. Update state management, feedback, and scenario logic to incorporate these new axes.",
+            "status": "pending",
+            "dependencies": [
+              2
+            ],
+            "details": "Implement new state variables and update functions for each additional dimension. Ensure all feedback and analytics systems reflect these values. Modify scenario and consequence logic to include compound effects and tipping points involving these dimensions.",
+            "testStrategy": "Unit and integration tests to verify correct tracking, updating, and feedback for all new dimensions. Scenario tests to ensure compound consequences and tipping points are handled."
+          },
+          {
+            "id": 7,
+            "title": "Implement Comprehensive Ending and Scoring System",
+            "description": "Develop multiple win and loss conditions, including rare and compound endings. Create a sophisticated scoring algorithm that rewards path navigation wisdom, not just survival.",
+            "status": "pending",
+            "dependencies": [
+              3,
+              6
+            ],
+            "details": "Define and implement logic for Perfect Deep Utopia, Good Alignment, Acceptable Safety, Near Miss, and False Victory endings. Develop a scoring system that factors in efficiency, risk minimization, resource management, and stakeholder relationships. Ensure endings and scores reflect compound consequences and tipping points.",
+            "testStrategy": "Simulate a wide range of player paths to verify correct ending assignment and scoring. Test for correct handling of rare and compound outcomes."
+          },
+          {
+            "id": 8,
+            "title": "Develop Leaderboard, Analytics, and Achievement Systems",
+            "description": "Create systems to track and display player performance, including leaderboards, detailed analytics of player paths, achievement tracking for rare choice combinations, and Path Mastery metrics.",
+            "status": "pending",
+            "dependencies": [
+              7
+            ],
+            "details": "Implement leaderboard with sortable metrics, generate heatmaps and analytics of player decisions, and track achievements for rare and exceptional outcomes. Display Path Mastery metrics to show player understanding of dual-axis and multi-dimensional navigation.",
+            "testStrategy": "Test leaderboard and analytics accuracy, achievement unlocks, and Path Mastery calculations. Validate UI/UX for displaying analytics and achievements."
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Research and Implement AI Image Generation System with JSON Context Profiles",
+        "description": "Develop an AI image generation system that produces consistent, contextually appropriate visuals for game scenarios using JSON context profiles and integrates with the dual-axis risk system.",
+        "details": "1. Design a Visual Context Framework with interfaces to define style, scene context, and game state visuals.\n2. Implement a VisualContextGenerator class with predefined VISUAL_PROFILES for various scenario types, leveraging JSON context profiles to ensure consistency in character and environment imagery.\n3. Integrate the dual-axis risk system (P(doom) and Dystopia Level) to dynamically generate risk-appropriate images reflecting the player's position on the narrow path.\n4. Connect with OpenAI DALL-E and Midjourney APIs for image generation, implementing fallback mechanisms to maintain service reliability.\n5. Develop JSON context profiles as blueprints capturing style, composition, and content details to guide image generation and maintain visual consistency across scenarios.\n6. Optimize image generation for mobile platforms with progressive loading, caching strategies, and compression techniques.\n7. Implement offline fallback options to ensure visual continuity when network access is limited.\n8. Integrate the system with the Decision Theater System for immersive scenario visualization and enhance Viral Sharing Features with dynamic, context-aware imagery.\n9. Ensure the system supports scenario systems across all acts, adapting visuals to the evolving game state and risk levels.\n\nConsiderations include API rate limits, image generation latency, and maintaining stylistic coherence across diverse scenarios. Use advanced JSON context profiles to reduce variability in AI-generated images and improve reproducibility. Employ caching and compression to optimize performance on mobile devices.",
+        "testStrategy": "1. Verify JSON context profiles accurately capture and reproduce image style and content across multiple generation attempts.\n2. Test integration with OpenAI DALL-E and Midjourney APIs, including fallback scenarios when primary services fail.\n3. Validate that generated images reflect the current dual-axis risk levels and scenario context appropriately.\n4. Perform mobile performance testing for image loading speed, caching effectiveness, and progressive rendering.\n5. Conduct offline mode testing to ensure fallback images or cached assets display correctly.\n6. Test integration with Decision Theater System and Viral Sharing Features to confirm dynamic imagery updates.\n7. Perform user testing to assess visual consistency and immersion throughout the player's journey.\n8. Monitor system performance under load to ensure scalability and responsiveness.",
+        "status": "pending",
+        "dependencies": [
+          1,
+          5,
+          6,
+          11,
+          14,
+          16
+        ],
+        "priority": "medium",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Research AI Image Generation APIs and JSON Context Profile Best Practices",
+            "description": "Investigate leading AI image generation APIs (OpenAI DALL-E, Midjourney, etc.) and study advanced JSON context profile techniques for achieving consistent, reproducible image outputs. Document API capabilities, rate limits, and JSON schema conventions for context profiles.",
+            "dependencies": [],
+            "details": "Review documentation and community resources on DALL-E and Midjourney. Analyze recent advancements in JSON-based image prompting, including the use of Advanced JSON Context Profiles (AJCP) for style and content consistency[1][3].",
+            "status": "pending",
+            "testStrategy": "Compile a comparative matrix of API features, rate limits, and JSON profile requirements. Validate findings by generating sample images using test JSON profiles."
+          },
+          {
+            "id": 2,
+            "title": "Design and Extend the Visual Context Framework",
+            "description": "Expand the existing visualContext.ts system to support advanced JSON context profiles, enabling detailed specification of style, scene, and game state visuals.",
+            "dependencies": [
+              1
+            ],
+            "details": "Define interfaces and data structures for JSON context profiles, ensuring they capture all necessary visual attributes (style, composition, subject, environment, etc.)[1][3]. Integrate these into the VisualContextGenerator class.",
+            "status": "in-progress",
+            "testStrategy": "Unit test the framework by generating and validating JSON context profiles for a variety of game scenarios."
+          },
+          {
+            "id": 3,
+            "title": "Integrate OpenAI DALL-E and Midjourney APIs with Fallback Logic",
+            "description": "Implement robust API integration for image generation, supporting both OpenAI DALL-E and Midjourney, with automatic fallback mechanisms to maintain reliability during outages or rate limit events.",
+            "dependencies": [
+              2
+            ],
+            "details": "Develop API client modules for both providers. Implement logic to detect failures and switch providers seamlessly. Ensure JSON context profiles are correctly mapped to each API's input format.",
+            "status": "pending",
+            "testStrategy": "Simulate API failures and verify that fallback logic triggers and maintains service continuity. Confirm image outputs remain consistent across providers."
+          },
+          {
+            "id": 4,
+            "title": "Integrate Dual-Axis Risk System with Visual Context Generation",
+            "description": "Connect the dual-axis risk system (P(doom) and Dystopia Level) to dynamically adjust JSON context profiles and generated imagery, reflecting the player's current risk state.",
+            "dependencies": [
+              2
+            ],
+            "details": "Map risk levels to visual attributes within the JSON context profiles, ensuring generated images visually communicate the player's position on the risk axes.",
+            "status": "pending",
+            "testStrategy": "Create test scenarios with varying risk levels and verify that generated images appropriately reflect risk context."
+          },
+          {
+            "id": 5,
+            "title": "Implement Performance Optimization and Caching Strategies",
+            "description": "Optimize image generation workflows by implementing caching of generated images, progressive loading, and efficient compression to reduce latency and bandwidth usage.",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "Design a caching layer for storing and retrieving images based on JSON context profile hashes. Apply image compression and progressive loading techniques for faster display.",
+            "status": "pending",
+            "testStrategy": "Benchmark image load times and cache hit rates. Measure performance improvements on repeated requests and under varying network conditions."
+          },
+          {
+            "id": 6,
+            "title": "Optimize System for Mobile Platforms",
+            "description": "Adapt the image generation and delivery pipeline for mobile devices, focusing on responsive image sizing, adaptive compression, and minimal resource usage.",
+            "dependencies": [
+              5
+            ],
+            "details": "Implement device detection and serve appropriately sized/compressed images. Ensure smooth progressive loading and minimal memory footprint on mobile.",
+            "status": "pending",
+            "testStrategy": "Test on a range of mobile devices and network conditions. Validate image quality, load times, and app responsiveness."
+          },
+          {
+            "id": 7,
+            "title": "Develop Testing and Quality Assurance Procedures",
+            "description": "Establish comprehensive testing protocols for the entire system, including unit, integration, and end-to-end tests covering API integration, visual consistency, and performance.",
+            "dependencies": [],
+            "details": "Automate tests for JSON profile parsing, API responses, image output consistency, and fallback mechanisms. Include regression tests for new features.",
+            "status": "pending",
+            "testStrategy": "Run automated test suites on every build. Manually review image outputs for visual consistency and correctness in edge cases."
+          },
+          {
+            "id": 8,
+            "title": "Create Documentation and Usage Guidelines",
+            "description": "Produce detailed documentation covering system architecture, JSON context profile creation, API integration, and best practices for maintaining visual consistency.",
+            "dependencies": [],
+            "details": "Document the JSON schema, integration steps, troubleshooting tips, and guidelines for extending the system. Include usage examples for developers and designers.",
+            "status": "pending",
+            "testStrategy": "Review documentation for completeness and clarity. Solicit feedback from internal users and update based on usability testing."
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Design Comprehensive Choice Architecture and Path Navigation System",
+        "description": "Develop a sophisticated choice architecture and path navigation system that supports complex branching, multi-dimensional consequences, redemption arcs, and advanced win condition logic, all while maintaining philosophical coherence with the 'narrow path' concept. Implement a dynamic scenario variant system to prevent community gaming of optimal paths.",
+        "status": "pending",
+        "dependencies": [
+          2,
+          6,
+          11,
+          16
+        ],
+        "priority": "high",
+        "details": "1. Architect a decision tree engine supporting 15-20 critical decision points across 4 acts, each with 4-5 meaningful options, ensuring each choice can impact multiple dimensions: P(doom), Dystopia Level, Path Position, Credibility, Resources, Knowledge, and Relationships.\n2. Implement a consequence system that tracks both immediate and delayed (2-3 scenario lag) effects, including hidden and compound consequences where minor choices can combine for major outcomes.\n3. Build a branching scenario manager that adapts available choices and narrative paths based on prior decisions and current game state, supporting dynamic scenario unlocking and closure.\n4. Integrate multiple win condition logic, including ultra-rare 'Deep Utopia' endings, probabilistically rare 'Good Alignment' and 'Acceptable Safety' outcomes, and 'False Victory' scenarios with hidden fail states.\n5. Develop redemption arc mechanics: trigger 'course correction' events at high risk thresholds, enforce escalating costs for redemption (sacrificing credibility, resources, or relationships), and unlock new options through accumulated knowledge or alliances.\n6. Create a meta-choice framework allowing players to time decisions, gather information, and consult advisors, with a dynamic difficulty system that adapts to player understanding and a choice memory system that influences future options.\n7. Implement tipping point mechanics where crossing certain thresholds exponentially increases difficulty of returning to the narrow path, and a sophisticated scoring algorithm that rewards wisdom, learning, and strategic play, not just survival.\n8. Ensure all systems are modular and extensible for future scenario and mechanic additions, and tightly integrate with the dual-axis risk system, scenario engine, and core UI framework.\n9. Design a dynamic scenario variant system with 8-12 variants per scenario (200-300 total unique scenarios) that test the same AI safety principles but require different optimal answers.\n10. Implement cryptographic seed generation using player hash + timestamp for deterministic variant selection, creating 30+ trillion possible combinations.\n11. Develop an auditability system for prize competition verification that maintains fairness while preventing community gaming of optimal paths.\n12. Create a statistical balancing framework to ensure equal difficulty across all scenario variants.",
+        "testStrategy": "1. Unit test the decision tree engine for correct branching, option availability, and consequence propagation (including delayed and compound effects).\n2. Simulate full playthroughs to verify all win conditions, redemption arcs, and false victory scenarios trigger as designed, with correct probabilities and narrative coherence.\n3. Test the consequence system for accurate multi-dimensional state updates and hidden consequence manifestation.\n4. Validate dynamic scenario adaptation by manipulating game state and ensuring correct scenario unlocking/closure.\n5. Conduct user testing to ensure choices feel meaningful, redemption arcs are challenging but fair, and the system supports deep replayability.\n6. Perform integration testing with the dual-axis risk system, scenario engine, and UI framework to ensure seamless data flow and feedback.\n7. Review scoring algorithm outputs for fairness and alignment with intended learning outcomes.\n8. Verify the cryptographic seed generation system produces consistent, deterministic scenario variants based on player hash and timestamp.\n9. Test the scenario variant database to ensure all 8-12 variants per scenario maintain consistent difficulty while requiring different optimal answers.\n10. Conduct A/B testing to verify balanced difficulty across all scenario variants.\n11. Validate the auditability system for prize competition verification, ensuring it maintains a verifiable record while preventing gaming.\n12. Perform statistical analysis on variant selection to confirm the 30+ trillion possible combinations effectively prevent community sharing of optimal paths.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design scenario variant database architecture",
+            "description": "Create database schema and API for storing and retrieving 8-12 variants per scenario (200-300 total unique scenarios), each testing the same AI safety principle but requiring different optimal answers.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement cryptographic seed generation system",
+            "description": "Develop a deterministic variant selection algorithm using player hash + timestamp as cryptographic seed, ensuring reproducible scenario selection for verification while creating 30+ trillion possible combinations.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create expert review workflow for variant quality",
+            "description": "Design and implement a review process for scenario variants to ensure consistent quality, difficulty balance, and alignment with intended learning outcomes across all variants.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop A/B testing framework for difficulty verification",
+            "description": "Build a testing framework to compare difficulty levels across scenario variants, ensuring statistical balance and fairness in the prize competition.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement auditability system for prize verification",
+            "description": "Create a secure, transparent system for verifying player paths and scores for prize competitions while maintaining the integrity of the variant selection process.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Integrate variant system with existing choice architecture",
+            "description": "Connect the scenario variant system with the core decision tree engine, ensuring seamless operation with consequence tracking, branching scenarios, and win condition logic.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Implement Game State & Progression System",
+        "description": "Create a comprehensive system to track player progression across multiple dimensions: Credibility, Resources, Knowledge, and Relationships with key stakeholders, enabling sophisticated choice availability and ending calculations.",
+        "details": "1. Design and implement a multi-dimensional state management system:\n   - Credibility System: Track player's standing with various factions (scientists, governments, corporations, public)\n   - Resource Management: Track political capital, financial resources, technological access, time pressure\n   - Knowledge Accumulation: Implement learning from scenarios, unlocking new information, advisor insights\n   - Relationship Network: Create dynamic relationships with key stakeholders that open/close options\n\n2. Implement advanced game mechanics:\n   - Knowledge dependency system where certain choices require specific information\n   - Relationship-gated scenarios that only unlock with sufficient trust/credibility\n   - Resource cost system for actions (using political capital, spending money, burning bridges)\n   - Reputation cascade effects where actions in one domain affect credibility in others\n   - Time pressure mechanics where delayed decisions have consequences\n\n3. Develop state persistence and history tracking:\n   - Create a robust state management architecture using Redux or similar\n   - Implement historical tracking for compound consequence calculations\n   - Design serialization/deserialization for save/load functionality\n   - Develop state snapshots for undo/replay capabilities\n\n4. Create integration points with existing systems:\n   - Connect with dual-axis risk system (Task 16) to ensure cohesive gameplay\n   - Integrate with choice architecture (Task 18) to enable/disable options based on state\n   - Link with scenario system (Tasks 11, 12) to affect narrative progression\n   - Connect with UI framework (Task 2) for state visualization\n\n5. Implement dynamic UI components:\n   - Design and develop dashboards showing current state across all dimensions\n   - Create visual indicators for threshold values and critical states\n   - Implement tooltips and explanations for state changes\n   - Design notification system for significant state changes\n\n6. Build analytics and debugging tools:\n   - Create developer console for state inspection and manipulation\n   - Implement logging system for state changes\n   - Develop analytics integration for tracking player progression patterns\n   - Create visualization tools for state history and decision impact",
+        "testStrategy": "1. Unit testing:\n   - Test state management functions for all dimensions (Credibility, Resources, Knowledge, Relationships)\n   - Verify correct calculation of derived states and thresholds\n   - Test serialization/deserialization for save/load functionality\n   - Validate historical tracking and compound calculations\n\n2. Integration testing:\n   - Verify integration with dual-axis risk system (Task 16)\n   - Test interaction with choice architecture (Task 18)\n   - Validate scenario unlocking based on state conditions\n   - Test UI updates in response to state changes\n\n3. Scenario testing:\n   - Create test scenarios that exercise all dimensions of the state system\n   - Verify knowledge-gated choices appear/disappear appropriately\n   - Test relationship-dependent scenario branching\n   - Validate resource costs are correctly applied and tracked\n\n4. Performance testing:\n   - Measure memory usage during extended gameplay\n   - Test save/load performance with complex state history\n   - Verify UI responsiveness during state transitions\n   - Benchmark state calculations for complex compound effects\n\n5. User testing:\n   - Evaluate clarity of state visualization\n   - Test user understanding of progression mechanics\n   - Verify feedback clarity for state changes\n   - Assess user satisfaction with progression pacing",
+        "status": "pending",
+        "dependencies": [
+          2,
+          11,
+          16,
+          18
+        ],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 20,
+        "title": "Implement Global Leaderboards & Analytics System",
+        "description": "Create a comprehensive leaderboard, analytics, and progression tracking system that monitors player performance across multiple dimensions, enabling educational progression and deep insights into learning patterns across multiple play attempts.",
+        "status": "pending",
+        "dependencies": [
+          1,
+          2,
+          6,
+          11,
+          16,
+          19
+        ],
+        "priority": "medium",
+        "details": "1. Design and implement the progression tracking architecture:\n   - Create database schema for storing player performance metrics across multiple attempts\n   - Implement achievement categories (Reached Act 2, Highest Path Score, Learning Milestones, etc.)\n   - Develop progression algorithms for each category with appropriate weighting factors\n   - Implement learning curve tracking to show improvement over time\n\n2. Develop the analytics engine:\n   - Create choice pattern heatmaps showing learning progression paths\n   - Implement failure point analysis to identify common player mistakes and subsequent improvements\n   - Build compound consequence tracking to visualize how early choices affect late game outcomes\n   - Develop correlation analysis between player learning patterns and improvement rates\n   - Create prediction models for likely player growth based on engagement patterns\n\n3. Implement social and educational features:\n   - Design player profiles showing personal analytics, achievement history, and learning progression\n   - Create choice comparison functionality allowing players to see their own alternative paths across attempts\n   - Develop post-game educational analysis and feedback system\n   - Implement expert commentary system highlighting AI safety principles learned\n   - Build social sharing features for achievements and learning milestones\n\n4. Create backend infrastructure:\n   - Implement payment processing system ($1 per game start, first play free)\n   - Develop privacy-preserving analytics that maintain player anonymity\n   - Build scalable backend architecture supporting millions of players and multiple plays per user\n   - Create data export functionality for AI safety education analysis\n   - Implement caching strategies for high-performance progression display\n\n5. Integrate with existing systems:\n   - Connect to the game state system to track player choices and outcomes across multiple attempts\n   - Integrate with the dual-axis risk system for performance metrics\n   - Link to the achievement system for progression tracking\n   - Connect to user authentication for player profiles and payment processing\n   - Implement enhanced scoring system that shows progression even in failure scenarios",
+        "testStrategy": "1. Database and performance testing:\n   - Verify database schema correctly stores metrics across multiple play attempts\n   - Load test the progression system with simulated data for millions of players\n   - Benchmark real-time update performance under high concurrency\n   - Test caching strategies for optimal performance\n   - Verify data integrity across system components\n\n2. Functional testing:\n   - Validate progression algorithms produce expected results for each achievement category\n   - Verify learning curve tracking correctly identifies and visualizes improvement\n   - Test analytics visualizations for accuracy and performance\n   - Validate prediction models against known outcome data\n   - Verify payment processing functions correctly for first-free and subsequent $1 plays\n\n3. Integration testing:\n   - Test integration with game state system for accurate metric collection across multiple attempts\n   - Verify achievement updates correctly reflect player progression\n   - Test social sharing functionality for learning milestones\n   - Validate data export functionality for research purposes\n   - Verify privacy measures maintain player anonymity while providing useful insights\n\n4. User experience testing:\n   - Conduct usability testing for progression tracking and understanding\n   - Test post-game educational analysis for clarity and learning value\n   - Verify social features enhance player engagement and learning motivation\n   - Test educational features for effectiveness in conveying AI safety principles\n   - Validate that progression elements drive engagement and repeated play\n\n5. Security and compliance testing:\n   - Verify privacy measures comply with relevant regulations (GDPR, CCPA)\n   - Test for potential data leakage or privacy vulnerabilities\n   - Validate that anonymized data cannot be de-anonymized\n   - Test access controls for administrative functions\n   - Verify secure handling of player data and payment information across all system components",
+        "subtasks": []
+      },
+      {
+        "id": 21,
+        "title": "Develop Scenario Content Creation System",
+        "description": "Create a comprehensive scenario content creation system for developing 200-300 unique scenario variants across all acts, with 8-12 variants per scenario for 25 total scenarios, each testing the same AI safety principles but with different optimal answers.",
+        "details": "1. Design and implement a scenario template system:\n   - Create standardized templates for scenario structure, including context, choices, consequences, and optimal paths\n   - Develop metadata schema for tracking AI safety principles, difficulty levels, and variant identifiers\n   - Implement version control for scenario iterations and expert reviews\n\n2. Develop a variant generation framework:\n   - Create tools for writers to efficiently generate 8-12 variants per scenario\n   - Implement context variable randomization system that maintains core AI safety principles while changing optimal answers\n   - Design difficulty balancing algorithms to ensure equal challenge across variants\n   - Develop content validation tools to verify each variant tests the same principles\n\n3. Create a collaborative content management system:\n   - Implement role-based access for content creators, reviewers, and administrators\n   - Develop review workflow with approval stages and feedback mechanisms\n   - Create annotation tools for expert reviewers to flag issues or suggest improvements\n   - Implement version history and change tracking\n\n4. Develop quality control and statistical testing tools:\n   - Create automated validation for scenario structure, choice options, and consequence mapping\n   - Implement statistical analysis tools to verify equal difficulty across variants\n   - Develop simulation tools to test scenario outcomes and path distribution\n   - Create reporting dashboards for content completion status and quality metrics\n\n5. Integrate with cryptographic variant selection system:\n   - Implement secure API for variant selection based on cryptographic randomization\n   - Ensure deterministic variant assignment based on player ID and session parameters\n   - Create caching mechanisms for efficient variant loading\n   - Implement analytics to track variant distribution and performance\n\n6. Develop content creation guidelines and training:\n   - Create comprehensive documentation for scenario writing team\n   - Develop training modules on AI safety principles and effective scenario design\n   - Create example scenarios with annotations explaining design decisions\n   - Implement style guide for consistent tone and quality across all content",
+        "testStrategy": "1. Content quality validation:\n   - Implement automated checks for scenario completeness, structural integrity, and metadata accuracy\n   - Conduct expert review sessions with AI safety specialists to verify principle alignment\n   - Perform blind testing to ensure variants maintain equal difficulty\n   - Validate that each variant tests the same principles but requires different optimal answers\n\n2. Statistical testing:\n   - Run simulations with automated players to verify difficulty distribution\n   - Analyze choice distribution and outcome patterns across variants\n   - Test for unintended correlations between variant features and optimal paths\n   - Verify that no variant is significantly easier or harder than others\n\n3. Integration testing:\n   - Verify seamless integration with the cryptographic variant selection system\n   - Test variant loading performance under various network conditions\n   - Validate correct variant assignment based on player ID and session parameters\n   - Ensure consistent player experience regardless of assigned variant\n\n4. User acceptance testing:\n   - Conduct playtests with diverse user groups to validate scenario clarity and engagement\n   - Gather feedback on perceived difficulty and fairness across variants\n   - Test comprehension of AI safety principles being taught\n   - Verify that players cannot easily identify optimal paths through pattern recognition\n\n5. System performance testing:\n   - Benchmark content loading times for all variants\n   - Test system performance with full content library\n   - Validate caching mechanisms for frequently accessed variants\n   - Ensure content management system remains responsive with complete scenario database",
+        "status": "pending",
+        "dependencies": [
+          11,
+          12,
+          16,
+          18
+        ],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 22,
+        "title": "Implement Payment and Monetization System",
+        "description": "Develop a comprehensive payment system for the $1-per-play model with educational progression features, including bundle discounts, free trials, premium features, and institutional pricing.",
+        "details": "1. Design and implement the core payment architecture:\n   - Develop a flexible payment model supporting $1-per-play with first play free\n   - Integrate with Stripe API (primary) and PayPal (secondary) payment processors\n   - Implement secure token-based payment processing with proper encryption\n   - Create play credit system with database tracking of available plays\n\n2. Implement bundle discount packages:\n   - Create \"5 plays for $4\" bundle with 20% discount\n   - Create \"10 plays for $7\" bundle with 30% discount\n   - Design UI for bundle selection and purchase flow\n   - Implement automatic credit application after purchase\n\n3. Develop free trial and referral system:\n   - Create first-time user detection and free play allocation\n   - Implement referral tracking system with unique referral codes\n   - Design referral bonus structure (1 free play per successful referral)\n   - Develop email/social sharing tools for referral distribution\n\n4. Implement premium feature monetization:\n   - Create hint system with per-hint micropayments\n   - Develop extended post-game analysis as premium feature\n   - Implement premium scenario unlock system\n   - Design UI for premium feature discovery and purchase\n\n5. Create educational institution pricing model:\n   - Develop multi-user classroom license system\n   - Implement administrative dashboard for educators\n   - Create bulk purchase discounting for educational institutions\n   - Design student progress tracking for educational accounts\n\n6. Implement analytics and reporting:\n   - Create dashboard for monitoring payment conversions\n   - Implement player spending pattern analysis\n   - Develop engagement correlation with monetization metrics\n   - Create reporting tools for revenue forecasting\n\n7. Ensure regulatory compliance:\n   - Implement GDPR-compliant data handling for payment information\n   - Create proper terms of service and payment policy documentation\n   - Develop age verification for payment processing\n   - Implement regional tax calculation and reporting",
+        "testStrategy": "1. Payment processing validation:\n   - Test complete payment flow with Stripe and PayPal in sandbox environments\n   - Verify successful credit allocation after payment\n   - Test error handling for declined payments and connection issues\n   - Validate security measures including PCI compliance\n\n2. Bundle and pricing tests:\n   - Verify correct pricing application for all bundle options\n   - Test discount calculations and credit allocation\n   - Validate UI display of pricing options\n   - Test purchase flow for all bundle types\n\n3. Free trial and referral testing:\n   - Verify first-time user detection and free play allocation\n   - Test referral code generation and tracking\n   - Validate referral bonus application\n   - Test referral sharing functionality across platforms\n\n4. Premium feature validation:\n   - Test purchase and activation of all premium features\n   - Verify correct access control based on purchases\n   - Validate UI for premium feature discovery\n   - Test persistence of premium purchases across sessions\n\n5. Educational pricing tests:\n   - Verify classroom license creation and management\n   - Test administrative tools for educational accounts\n   - Validate student access under institutional licenses\n   - Test bulk purchase discounting logic\n\n6. Analytics and compliance testing:\n   - Verify accurate data collection for spending patterns\n   - Test reporting functionality for all metrics\n   - Validate GDPR compliance with data handling\n   - Test tax calculation for multiple regions",
+        "status": "pending",
+        "dependencies": [
+          1,
+          2,
+          15,
+          19,
+          20
+        ],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 23,
+        "title": "Design and Implement Blockchain Integration System",
+        "description": "Create a blockchain integration system using L2 solutions (Polygon or Base) for verifiable gameplay, achievements, and payment processing, enabling provably fair competition, transparent leaderboards, and trustless prize distribution.",
+        "details": "1. Design the blockchain architecture:\n   - Select and integrate with an L2 blockchain solution (Polygon or Base) for low-cost transactions\n   - Design smart contract system for game state verification, achievements, and payments\n   - Create cryptographic verification system for game scenarios and seeds\n   - Develop wallet integration with smooth UX for non-crypto users\n\n2. Implement payment processing system:\n   - Create smart contracts for $1 USDC per play transactions\n   - Implement secure payment gateway with wallet connection\n   - Develop escrow system for prize pools with automatic distribution\n   - Build reconciliation system with traditional payment methods\n   - Implement multi-currency support with stable conversion rates\n\n3. Develop achievement NFT system:\n   - Design NFT smart contracts for major game milestones (Deep Utopia, Act completions)\n   - Create metadata standard for achievement properties and rarity\n   - Implement minting process triggered by in-game accomplishments\n   - Develop gallery interface for viewing and sharing achievements\n   - Create social sharing functionality for achievement NFTs\n\n4. Implement verifiable gameplay system:\n   - Design immutable game record storage on blockchain\n   - Create cryptographic verification for scenario seeds and outcomes\n   - Implement anti-cheat mechanisms using blockchain verification\n   - Develop transparent leaderboard system with verifiable scores\n   - Create API for third-party verification of game results\n\n5. Ensure regulatory compliance:\n   - Implement KYC/AML procedures for prize distributions\n   - Create jurisdiction detection and compliance system\n   - Develop terms of service and user agreements for blockchain features\n   - Implement data privacy controls compliant with GDPR and other regulations\n   - Create audit trail for all blockchain transactions\n\n6. Optimize user experience:\n   - Implement gasless transactions where possible\n   - Create simplified wallet creation for new users\n   - Develop fallback mechanisms for offline play\n   - Build educational onboarding for blockchain features\n   - Implement cross-platform persistence of game history",
+        "testStrategy": "1. Smart contract testing:\n   - Deploy contracts to testnet environments for both Polygon and Base\n   - Perform security audits on all smart contracts\n   - Test payment processing with various wallet providers\n   - Verify prize distribution logic with simulated tournaments\n   - Validate gas optimization for all blockchain interactions\n\n2. Achievement NFT testing:\n   - Test minting process for all achievement types\n   - Verify metadata accuracy and completeness\n   - Test viewing and sharing functionality across platforms\n   - Validate ownership transfer and display in third-party wallets\n   - Performance test high-volume minting scenarios\n\n3. Gameplay verification testing:\n   - Test cryptographic verification of game seeds and outcomes\n   - Verify immutability of stored game records\n   - Test anti-cheat mechanisms with simulated attack scenarios\n   - Validate leaderboard accuracy and transparency\n   - Test API functionality for third-party verification\n\n4. Regulatory compliance testing:\n   - Test jurisdiction detection and appropriate restrictions\n   - Verify KYC/AML workflows for prize winners\n   - Test compliance with regional regulations (EU, US, Asia)\n   - Validate data privacy controls and user consent flows\n   - Perform legal review of all blockchain-related terms\n\n5. User experience testing:\n   - Conduct usability testing with crypto-naive users\n   - Test wallet creation and connection flows\n   - Verify offline play and synchronization\n   - Measure transaction times and user friction points\n   - Test cross-platform persistence across devices",
+        "status": "pending",
+        "dependencies": [
+          1,
+          15,
+          16,
+          19,
+          20,
+          22
+        ],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 24,
+        "title": "Conduct Expert Consultation on AI Safety & Risk Assessment Frameworks",
+        "description": "Engage leading AI safety and risk assessment experts to validate the philosophical, technical, and narrative frameworks underpinning existential risk modeling, dual-axis risk systems, scenario realism, and authentic dialogue for researchers and policymakers. Ensure all research findings and consultation results are comprehensively documented in a standardized format for future reference and implementation.",
+        "status": "pending",
+        "dependencies": [
+          16,
+          18,
+          21
+        ],
+        "priority": "high",
+        "details": "1. Identify and recruit a diverse panel of AI safety experts, including researchers, practitioners, and policymakers with experience in existential risk, dual-axis risk modeling (P(doom) vs Dystopia), and scenario-based risk assessment.\n2. Prepare briefing materials summarizing the current implementation of the dual-axis risk system, scenario architecture, and the 'narrow path' philosophical framework.\n3. Conduct structured interviews and workshops to:\n   - Validate the accuracy and realism of existential risk representations, including both quantitative (probabilistic/statistical) and qualitative (scenario-based, ethical deliberation) approaches.\n   - Review and refine the dual-axis risk model, ensuring it reflects current academic and industry thinking on accumulative and decisive AI risks.\n   - Assess the plausibility and diversity of scenario outcomes, including tipping points, redemption arcs, and win/loss conditions, against real-world AI safety principles and concerns.\n   - Solicit feedback on the authenticity of dialogue and decision-making processes for AI researchers and policymakers.\n   - Critically examine the philosophical underpinnings of the 'narrow path' concept, ensuring it aligns with expert perspectives on responsible AI governance and risk navigation.\n4. Synthesize expert feedback into actionable recommendations for scenario content, risk modeling, and dialogue systems.\n5. Document the consultation process, key findings, and resulting changes for transparency and future audits.\n6. Implement a comprehensive documentation strategy: All expert consultation findings must be saved in .taskmaster/docs/expert-consultations/ai-safety-consultation.md using a standardized format with the following sections:\n   - Expert Profiles & Credentials\n   - Key Findings & Recommendations\n   - Risk Model Validation Results\n   - Scenario Authenticity Assessment\n   - Implementation Guidelines for Tasks 3, 7, 11, 12\n   - Technical Specifications\n   - References & Sources\n   Each section should include direct quotes, specific recommendations, and actionable next steps, formatted for easy reference by implementation teams.",
+        "testStrategy": "- Verify that all major components (risk models, scenario outcomes, dialogue systems, and philosophical frameworks) have been reviewed by at least three recognized AI safety experts.\n- Ensure expert feedback is documented, with clear mapping to resulting changes in system design or content.\n- Conduct a follow-up review with at least one external expert to confirm that revisions address initial concerns and recommendations.\n- Validate that scenario outcomes and risk models reflect a balanced, up-to-date view of AI existential risks, as recognized in current literature and practice.\n- Confirm that the consultation process and outcomes are transparently documented for future reference and compliance.\n- Review .taskmaster/docs/expert-consultations/ai-safety-consultation.md to ensure all required sections are present, findings are clearly formatted, and documentation includes direct quotes, specific recommendations, and actionable next steps for implementation teams.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop standardized documentation template for AI Safety expert consultations",
+            "description": "Create a markdown template in .taskmaster/docs/expert-consultations/ai-safety-consultation.md with the following sections: Expert Profiles & Credentials, Key Findings & Recommendations, Risk Model Validation Results, Scenario Authenticity Assessment, Implementation Guidelines for Tasks 3, 7, 11, 12, Technical Specifications, References & Sources. Ensure the template supports inclusion of direct quotes, specific recommendations, and actionable next steps.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Document expert consultation findings using the standardized format",
+            "description": "After each expert consultation, record findings in the standardized markdown file, ensuring each section is completed with relevant details, direct quotes, and actionable recommendations for implementation teams.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Conduct Game Design & UX Expert Consultation for Choice Architecture and Engagement Systems",
+        "description": "Engage experienced game designers and UX experts to review and optimize the game's choice architecture, decision theater systems, player engagement mechanics, educational design, and viral sharing features, ensuring meaningful, non-manipulative choices and effective AI safety education. All findings and recommendations from the consultation process must be comprehensively documented in .taskmaster/docs/expert-consultations/game-design-consultation.md, structured for easy reference by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          6,
+          18,
+          21
+        ],
+        "priority": "high",
+        "details": "1. Identify and recruit a diverse panel of senior game designers and UX experts with backgrounds in educational games, behavioral psychology, and viral engagement mechanics.\n2. Prepare comprehensive briefing materials summarizing current implementations of choice architecture, decision theater systems, player engagement loops, educational scaffolding, and viral sharing features.\n3. Organize structured workshops and interviews to:\n   - Evaluate the balance between complexity and accessibility in choice architecture, referencing frameworks such as 'space of possibility' and 'preferred playing' to ensure all meaningful paths are discoverable and not overly guided or manipulative[1][3].\n   - Assess the decision theater system for clarity, emotional impact, and player agency, ensuring feedback and consequence visualization are intuitive and reinforce learning objectives.\n   - Review engagement mechanics (progression, compulsion loops, rewards) to maximize motivation without resorting to dark patterns, and to support viral sharing in a way that feels organic and rewarding.\n   - Validate that educational game design principles are embedded, so that AI safety concepts are taught through gameplay rather than exposition, and that learning is scaffolded to prevent cognitive overload.\n4. Synthesize expert feedback into actionable recommendations, prioritizing changes that enhance meaningful choice, player autonomy, and educational effectiveness.\n5. Collaborate with design and development teams to iterate on key systems based on expert input, documenting all changes and rationale.\n6. Document all expert consultation findings, recommendations, and implementation guidelines in .taskmaster/docs/expert-consultations/game-design-consultation.md. The documentation must include the following sections:\n   - Expert Profiles & Credentials\n   - Choice Architecture Optimization\n   - Player Engagement Mechanics\n   - Educational Game Design Principles\n   - Implementation Guidelines for Tasks 6, 11, 12\n   - UX/UI Recommendations\n   - Testing & Validation Methods\n   - References & Sources\n   Each section should include direct quotes, specific recommendations, and actionable next steps, formatted for easy reference by implementation teams.",
+        "testStrategy": "- Verify that at least three recognized experts in game design and UX have reviewed each major system (choice architecture, decision theater, engagement mechanics, educational scaffolding, viral sharing).\n- Ensure all expert feedback is documented and mapped to specific design or implementation changes.\n- Confirm that .taskmaster/docs/expert-consultations/game-design-consultation.md contains all required sections, with direct quotes, specific recommendations, and actionable next steps for each area.\n- Conduct user testing sessions with revised systems to confirm improvements in perceived choice meaningfulness, engagement, and clarity of AI safety learning outcomes.\n- Review analytics for reductions in player drop-off and increases in voluntary sharing and replay rates post-iteration.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop documentation template for expert consultation findings",
+            "description": "Create a structured Markdown template for .taskmaster/docs/expert-consultations/game-design-consultation.md, including all required sections: Expert Profiles & Credentials, Choice Architecture Optimization, Player Engagement Mechanics, Educational Game Design Principles, Implementation Guidelines for Tasks 6, 11, 12, UX/UI Recommendations, Testing & Validation Methods, References & Sources.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Aggregate and format expert feedback for documentation",
+            "description": "Collect all expert consultation notes, direct quotes, and recommendations. Organize and format them into the documentation template, ensuring each section is actionable and easy to reference for implementation teams.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Map expert recommendations to implementation tasks",
+            "description": "For each recommendation, specify which implementation tasks (including 6, 11, 12) are impacted and provide clear guidelines for integration.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Conduct Expert Consultation on Behavioral Science for AI Risk and Decision Modeling",
+        "description": "Engage with behavioral psychologists and decision-making experts to research cognitive biases, risk assessment, and educational psychology principles for optimizing AI opponent behaviors, choice presentation, and psychologically realistic character motivations. Ensure all findings are comprehensively documented and structured for implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          5,
+          7,
+          12
+        ],
+        "priority": "high",
+        "details": "1. Identify and recruit a panel of behavioral psychologists, cognitive scientists, and decision-making experts with experience in risk perception, cognitive bias, and educational psychology.\n2. Develop a structured research agenda focusing on:\n   - Key cognitive biases affecting risk perception and decision-making (e.g., confirmation bias, anchoring, overconfidence, illusion of control, optimism bias, scope insensitivity)[1][2][3].\n   - Behavioral patterns relevant to complex risk assessment and player profiling systems.\n   - Principles of effective educational psychology for optimizing learning and choice presentation.\n   - Psychological realism in character motivation and AI behavior design.\n3. Conduct interviews, workshops, and literature reviews to gather actionable insights and best practices.\n4. Synthesize findings into a comprehensive report with actionable recommendations for:\n   - Designing Mirror AI opponent behaviors that realistically reflect human cognitive biases and risk strategies.\n   - Structuring choice architecture and feedback for optimal player learning and engagement.\n   - Informing the player profiling system with empirically grounded behavioral patterns.\n   - Creating psychologically plausible character motivations and responses.\n5. Collaborate with AI, scenario, and character system teams to translate recommendations into technical requirements and design guidelines.\n6. Document all expert consultation findings in .taskmaster/docs/expert-consultations/psychology-consultation.md, ensuring the following sections are included for easy reference by implementation teams:\n   - Expert Profiles & Credentials\n   - Decision-Making Psychology Research\n   - Mirror AI Behavioral Modeling\n   - Cognitive Bias Analysis\n   - Implementation Guidelines for Tasks 6, 7, 11, 12\n   - Player Profiling Systems\n   - Educational Psychology Principles\n   - References & Sources\n   Format all findings with direct quotes, specific recommendations, and actionable next steps.",
+        "testStrategy": "- Review expert consultation documentation for completeness, relevance, and adherence to the required structure in .taskmaster/docs/expert-consultations/psychology-consultation.md.\n- Validate that the final report and documentation cover all targeted research areas (cognitive biases, risk perception, educational psychology, behavioral patterns, character motivation) and include all specified sections.\n- Confirm that actionable recommendations, direct quotes, and next steps are provided for Mirror AI design, choice presentation, player profiling, and implementation tasks.\n- Conduct internal workshops with design and AI teams to ensure findings are understood and integrated into system specifications.\n- Solicit feedback from consulted experts on the accuracy and applicability of the synthesized recommendations and documentation.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop documentation template for psychology consultation findings",
+            "description": "Create a markdown template at .taskmaster/docs/expert-consultations/psychology-consultation.md with required sections: Expert Profiles & Credentials, Decision-Making Psychology Research, Mirror AI Behavioral Modeling, Cognitive Bias Analysis, Implementation Guidelines for Tasks 6, 7, 11, 12, Player Profiling Systems, Educational Psychology Principles, References & Sources. Ensure formatting supports direct quotes, specific recommendations, and actionable next steps.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Populate documentation with expert consultation findings",
+            "description": "After consultations, synthesize and enter findings into the markdown file, ensuring each section is complete, actionable, and includes direct quotes and specific recommendations relevant to implementation teams.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Conduct Political Science & Geopolitics Expert Consultation for Realistic Governmental and Diplomatic Modeling",
+        "description": "Engage political scientists, international relations experts, and policy analysts to ensure the game's governmental responses, diplomatic scenarios, regulatory processes, and world leader behaviors are realistic and credible, with a focus on authentic policy timelines and international cooperation challenges. Implement a comprehensive documentation strategy to capture all expert consultation findings in .taskmaster/docs/expert-consultations/political-science-consultation.md, structured for easy reference and actionable use by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          5,
+          12,
+          24
+        ],
+        "priority": "high",
+        "details": "1. Identify and recruit a diverse panel of experts in political science, comparative government, international relations, and public policy, ensuring representation from multiple governmental systems (e.g., democracies, autocracies, federations, supranational bodies).\n2. Prepare briefing materials summarizing current scenario designs, regulatory process models, diplomatic event structures, and character behavior logic for world leaders and policymakers.\n3. Organize structured interviews and workshops to:\n   - Validate the realism of governmental responses to AI developments, including crisis management, legislative timelines, and regulatory implementation.\n   - Assess the plausibility of diplomatic scenarios, alliance dynamics, and international negotiation outcomes, referencing real-world case studies and historical precedents.\n   - Review the accuracy of regulatory processes, including interagency coordination, public consultation, and enforcement mechanisms across different systems.\n   - Evaluate character behaviors for world leaders and policymakers, ensuring they reflect authentic motivations, constraints, and decision-making under uncertainty.\n   - Identify challenges and bottlenecks in international cooperation on AI risk, such as sovereignty concerns, trust deficits, and divergent national interests.\n   - Recommend adjustments to scenario pacing, event triggers, and policy implementation timelines to reflect real-world feasibility.\n4. Document all expert feedback and synthesize actionable recommendations for scenario writers, system designers, and character developers.\n5. Iterate on scenario and system designs based on expert input, with follow-up consultations as needed to validate changes.\n6. Maintain a comprehensive, structured record of all expert consultation findings in .taskmaster/docs/expert-consultations/political-science-consultation.md, including the following sections:\n   - Expert Profiles & Credentials\n   - Governmental Response Analysis\n   - Diplomatic & International Relations\n   - Regulatory Process Realism\n   - Implementation Guidelines for Tasks 11, 12\n   - Policy Timeline Validation\n   - Character Behavior Authentication\n   - References & Sources\n7. Ensure documentation includes direct quotes, specific recommendations, and actionable next steps, formatted for clarity and ease of use by implementation teams.",
+        "testStrategy": "- Confirm that at least three recognized experts in political science, international relations, or policy analysis have reviewed each major system (governmental response, diplomatic scenario, regulatory process, leader behavior).\n- Ensure all expert feedback is documented and mapped to specific design or implementation changes.\n- Validate that scenario timelines, diplomatic event outcomes, and regulatory processes align with expert recommendations and real-world precedents.\n- Conduct scenario walkthroughs with experts to verify plausibility and identify remaining gaps.\n- Review character behavior scripts for world leaders and policymakers to ensure they reflect authentic motivations and constraints as identified by experts.\n- Verify that .taskmaster/docs/expert-consultations/political-science-consultation.md exists and contains all required sections, with findings formatted for easy reference, including direct quotes, recommendations, and actionable next steps.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design documentation template for expert consultation findings",
+            "description": "Create a markdown template for .taskmaster/docs/expert-consultations/political-science-consultation.md with the following sections: Expert Profiles & Credentials, Governmental Response Analysis, Diplomatic & International Relations, Regulatory Process Realism, Implementation Guidelines for Tasks 11, 12, Policy Timeline Validation, Character Behavior Authentication, References & Sources. Ensure the template supports direct quotes, specific recommendations, and actionable next steps.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Populate documentation with expert consultation findings",
+            "description": "After each expert interview or workshop, summarize and format findings in the designated markdown file, ensuring all required sections are updated with direct quotes, recommendations, and next steps.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Review documentation for completeness and usability",
+            "description": "Have implementation team members review .taskmaster/docs/expert-consultations/political-science-consultation.md to confirm all sections are present, findings are clearly formatted, and actionable next steps are easy to identify.",
+            "status": "pending",
+            "dependencies": [],
+            "details": "",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Conduct Technology & Cybersecurity Expert Consultation for Deepfake, AI, and Cyber Threat Realism",
+        "description": "Engage cybersecurity experts, AI engineers, and technology analysts to ensure the game's depiction of deepfake technology, AI capabilities, cyber threats, technical dialogue, and future technology scenarios is accurate, credible, and up-to-date. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/technology-cybersecurity-consultation.md using a standardized format for easy reference by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          5,
+          12,
+          17,
+          21,
+          24
+        ],
+        "priority": "medium",
+        "details": "1. Identify and recruit a diverse panel of experts in cybersecurity, AI engineering, deepfake detection, and technology analysis, ensuring representation from both industry and academia.\n2. Prepare briefing materials summarizing current and planned in-game representations of deepfake technology, AI system capabilities and limitations, cyber threat scenarios, technical dialogue, and projected technology timelines.\n3. Conduct structured interviews and workshops to:\n   - Validate the realism of deepfake technology portrayal, including current state-of-the-art generative models, detection methods (e.g., multi-layered defense, explainable AI, facial X-ray, CapsNet+GANs), and the sophistication of threats in 2025[1][3].\n   - Assess the credibility of AI system capabilities, limitations, and development timelines, referencing expert consensus and recent breakthroughs.\n   - Review cyber threat scenarios for authenticity, including realistic attack vectors, vulnerabilities, and system behaviors under stress or attack[1][2][3].\n   - Ensure technical dialogue and jargon used by in-game experts and adversaries reflects authentic language and reasoning used by real-world professionals.\n   - Evaluate future technology scenarios for plausibility, referencing current trends, regulatory debates, and expert predictions[3][4].\n4. Document all expert feedback, mapping actionable recommendations to specific game systems, scenario content, and dialogue scripts.\n5. Iterate on scenario and system designs based on expert input, ensuring all changes are tracked and justified.\n6. Save all research findings, expert feedback, and recommendations in .taskmaster/docs/expert-consultations/technology-cybersecurity-consultation.md, using the following standardized sections: 1) Expert Profiles & Credentials, 2) Domain-Specific Research Findings, 3) Technical/Implementation Recommendations, 4) Implementation Guidelines for specific tasks, 5) Testing & Validation Methods, 6) Best Practices, 7) References & Sources. Format for easy reference by implementation teams, including direct quotes, specific recommendations, and actionable next steps.",
+        "testStrategy": "- Confirm that at least three recognized experts in cybersecurity, AI engineering, and technology analysis have reviewed each major system and scenario involving deepfake technology, AI capabilities, and cyber threats.\n- Ensure all expert feedback is documented, with clear mapping to resulting changes in scenario design, technical dialogue, and system behavior.\n- Validate that in-game representations of deepfake technology, AI systems, and cyber threats align with current expert consensus and published research as of 2025.\n- Conduct scenario walkthroughs with external experts to verify the authenticity and plausibility of technical content and future projections.\n- Review .taskmaster/docs/expert-consultations/technology-cybersecurity-consultation.md for completeness, standardized formatting, and actionable content.",
+        "subtasks": [
+          {
+            "title": "Create documentation template for technology & cybersecurity consultation",
+            "description": "Develop a standardized markdown template for .taskmaster/docs/expert-consultations/technology-cybersecurity-consultation.md with required sections.",
+            "status": "pending"
+          },
+          {
+            "title": "Populate documentation with expert profiles, research findings, and recommendations",
+            "description": "Aggregate and format all consultation outputs into the standardized documentation, ensuring direct quotes, actionable recommendations, and next steps are included.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "Economics & Monetization Expert Consultation",
+        "description": "Conduct research with behavioral economists, game monetization experts, and fintech specialists to optimize the $1-per-play pricing model, design educational progression incentives, create sustainable revenue streams, and develop fair prize competition mechanics. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/economics-monetization-consultation.md using a standardized format for easy reference by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          15,
+          17,
+          18
+        ],
+        "priority": "medium",
+        "details": "1. Organize consultation sessions with:\n   a. Behavioral economists specializing in educational incentives\n   b. Game monetization experts with freemium model experience\n   c. Fintech specialists familiar with blockchain-based payment systems\n\n2. Research and analyze:\n   a. Pricing psychology for $1-per-play model\n   b. Educational economics and progression incentives\n   c. Freemium conversion strategies in educational games\n   d. Blockchain integration for transparent and secure transactions\n\n3. Develop a comprehensive report covering:\n   a. Optimal pricing strategy, including potential dynamic pricing models\n   b. Educational progression incentive structure\n   c. Sustainable revenue stream recommendations\n   d. Fair prize competition mechanics\n\n4. Create a financial model that projects:\n   a. User acquisition costs\n   b. Conversion rates from free to paid users\n   c. Lifetime value of users\n   d. Revenue projections based on different pricing and incentive models\n\n5. Design A/B testing scenarios for:\n   a. Different pricing points around the $1-per-play model\n   b. Various educational progression incentive structures\n   c. Prize competition mechanics\n\n6. Develop implementation recommendations for:\n   a. Integrating blockchain-based payment systems\n   b. Implementing dynamic pricing algorithms\n   c. Creating a fair and engaging prize distribution system\n   d. Balancing monetization with educational value and accessibility\n\n7. Outline potential risks and mitigation strategies related to:\n   a. Regulatory compliance in different markets\n   b. User privacy and data protection\n   c. Potential exploitation of prize competition mechanics\n   d. Maintaining educational integrity while pursuing monetization\n\n8. Create a roadmap for phased implementation of monetization features, aligning with the game's development timeline and educational goals.\n9. Save all research findings, expert feedback, and recommendations in .taskmaster/docs/expert-consultations/economics-monetization-consultation.md, using the following standardized sections: 1) Expert Profiles & Credentials, 2) Domain-Specific Research Findings, 3) Technical/Implementation Recommendations, 4) Implementation Guidelines for specific tasks, 5) Testing & Validation Methods, 6) Best Practices, 7) References & Sources. Format for easy reference by implementation teams, including direct quotes, specific recommendations, and actionable next steps.",
+        "testStrategy": "1. Conduct user surveys and focus groups to gauge reception of proposed pricing models and incentive structures\n\n2. Implement A/B testing scenarios in a controlled beta environment:\n   a. Test different pricing points and models\n   b. Evaluate user engagement with various educational progression incentives\n   c. Analyze user behavior in response to different prize competition mechanics\n\n3. Perform financial model validation:\n   a. Compare actual user acquisition costs against projections\n   b. Track conversion rates from free to paid users\n   c. Calculate and compare actual user lifetime value to projections\n\n4. Test blockchain payment integration:\n   a. Verify transaction speed and reliability\n   b. Ensure proper handling of microtransactions\n   c. Validate security measures and user data protection\n\n5. Conduct regulatory compliance checks:\n   a. Review implementation against relevant laws and regulations in target markets\n   b. Perform privacy impact assessments\n\n6. Evaluate educational integrity:\n   a. Assess if monetization features detract from or enhance educational outcomes\n   b. Gather feedback from education experts on the balance of gameplay and learning\n\n7. Perform stress tests on prize competition mechanics:\n   a. Simulate various user behaviors to identify potential exploits\n   b. Verify fairness of prize distribution algorithms\n\n8. Monitor key performance indicators (KPIs) during phased implementation:\n   a. User retention rates\n   b. Average revenue per user (ARPU)\n   c. User satisfaction scores\n   d. Learning outcome metrics\n\n9. Conduct long-term impact studies:\n   a. Analyze how monetization features affect user learning progress over time\n   b. Evaluate the sustainability of revenue streams\n   c. Assess the game's market position and competitiveness\n10. Review .taskmaster/docs/expert-consultations/economics-monetization-consultation.md for completeness, standardized formatting, and actionable content.",
+        "subtasks": [
+          {
+            "title": "Create documentation template for economics & monetization consultation",
+            "description": "Develop a standardized markdown template for .taskmaster/docs/expert-consultations/economics-monetization-consultation.md with required sections.",
+            "status": "pending"
+          },
+          {
+            "title": "Populate documentation with expert profiles, research findings, and recommendations",
+            "description": "Aggregate and format all consultation outputs into the standardized documentation, ensuring direct quotes, actionable recommendations, and next steps are included.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Education & Learning Theory Expert Consultation",
+        "description": "Engage educational researchers, learning scientists, and instructional designers to maximize the game's educational impact, optimize knowledge retention, design effective progression systems, and create meaningful assessment mechanisms based on adult learning and experiential education theory. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/education-learning-consultation.md using a standardized format for easy reference by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          1,
+          25,
+          26
+        ],
+        "priority": "high",
+        "details": "1. Identify and recruit a panel of experts in adult learning, experiential education, serious games research, and instructional design, ensuring representation from both academia and industry.\n2. Prepare comprehensive briefing materials summarizing the game's current educational objectives, progression systems, assessment mechanisms, and AI safety content.\n3. Develop a structured research agenda focusing on:\n   - Application of adult learning principles (andragogy) to game-based learning, including problem-centered quests, decision-making, and challenge calibration[1][3][5].\n   - Integration of experiential education theory to foster learning through immersive scenarios and reflective feedback.\n   - Best practices from serious games research for maximizing engagement, knowledge retention, and transfer to real-world contexts[2].\n   - Design of progression systems that scaffold complexity and maintain motivation for adult learners.\n   - Creation of assessment mechanisms that measure both short-term mastery and long-term learning outcomes related to AI safety concepts.\n4. Conduct structured interviews, workshops, and collaborative design sessions with the expert panel.\n5. Synthesize findings into actionable recommendations for game design, progression, and assessment systems, with clear mapping to adult learning and experiential education principles.\n6. Document all expert feedback and ensure recommendations are integrated into the game's design documentation.\n7. Save all research findings, expert feedback, and recommendations in .taskmaster/docs/expert-consultations/education-learning-consultation.md, using the following standardized sections: 1) Expert Profiles & Credentials, 2) Domain-Specific Research Findings, 3) Technical/Implementation Recommendations, 4) Implementation Guidelines for specific tasks, 5) Testing & Validation Methods, 6) Best Practices, 7) References & Sources. Format for easy reference by implementation teams, including direct quotes, specific recommendations, and actionable next steps.",
+        "testStrategy": "- Verify that at least three recognized experts in educational research, learning science, and instructional design have reviewed the game's educational systems and provided actionable feedback.\n- Ensure all expert recommendations are documented and mapped to specific design or implementation changes.\n- Confirm that the final report addresses adult learning principles, experiential education, progression system design, and assessment mechanisms.\n- Review integration of expert feedback into game design documentation and validate alignment with project educational goals.\n- Review .taskmaster/docs/expert-consultations/education-learning-consultation.md for completeness, standardized formatting, and actionable content.",
+        "subtasks": [
+          {
+            "title": "Create documentation template for education & learning consultation",
+            "description": "Develop a standardized markdown template for .taskmaster/docs/expert-consultations/education-learning-consultation.md with required sections.",
+            "status": "pending"
+          },
+          {
+            "title": "Populate documentation with expert profiles, research findings, and recommendations",
+            "description": "Aggregate and format all consultation outputs into the standardized documentation, ensuring direct quotes, actionable recommendations, and next steps are included.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "title": "Conduct Data Science & Analytics Expert Consultation for Player Behavior Tracking and Metrics",
+        "description": "Engage data scientists, machine learning engineers, and analytics specialists to design robust player behavior tracking systems, develop meaningful performance metrics, predictive models for learning outcomes, and privacy-preserving analytics with a focus on ethical data collection and leaderboard fairness. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/data-analytics-consultation.md using a standardized format for easy reference by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          20,
+          26
+        ],
+        "priority": "medium",
+        "details": "1. Identify and recruit a panel of experts in data science, machine learning, and analytics with experience in educational games, player profiling, and privacy-preserving data analysis.\n2. Organize structured workshops and interviews to:\n   - Review and refine the player behavior tracking architecture, ensuring comprehensive logging of player actions and telemetry data for real-time and post-hoc analysis[1][3][5].\n   - Collaborate on the design of performance metrics that capture learning progression, engagement, and behavioral patterns, leveraging statistical modeling and machine learning techniques to link behaviors to learning outcomes[1][2][5].\n   - Develop predictive models for learning outcomes, including churn prediction, using supervised and unsupervised learning approaches (e.g., random forests, clustering, deep learning)[2][3].\n   - Advise on the implementation of privacy-preserving analytics, such as data anonymization, differential privacy, and secure aggregation, to ensure compliance with ethical standards and regulations.\n   - Evaluate and recommend algorithms for player profiling, leaderboard fairness (e.g., anti-cheat, abnormal behavior detection), and A/B testing methodologies for educational effectiveness[3][5].\n   - Establish statistical approaches for measuring educational impact, including subgroup analysis and intervention validation[5].\n3. Document expert recommendations and integrate actionable insights into the analytics and leaderboard systems, with a clear mapping to system changes and privacy safeguards.\n4. Save all research findings, expert feedback, and recommendations in .taskmaster/docs/expert-consultations/data-analytics-consultation.md, using the following standardized sections: 1) Expert Profiles & Credentials, 2) Domain-Specific Research Findings, 3) Technical/Implementation Recommendations, 4) Implementation Guidelines for specific tasks, 5) Testing & Validation Methods, 6) Best Practices, 7) References & Sources. Format for easy reference by implementation teams, including direct quotes, specific recommendations, and actionable next steps.",
+        "testStrategy": "- Verify that all major analytics components (behavior tracking, metrics, predictive models, privacy safeguards) have been reviewed and validated by at least three recognized experts in data science and analytics.\n- Ensure expert feedback is documented and traceable to specific system improvements or design changes.\n- Test the revised tracking and analytics systems for accuracy, fairness, and privacy compliance using simulated and real player data.\n- Validate that leaderboard and player profiling algorithms are robust against manipulation and respect privacy constraints.\n- Confirm that A/B testing and statistical measurement frameworks are implemented and produce reliable, actionable insights on educational effectiveness.\n- Review .taskmaster/docs/expert-consultations/data-analytics-consultation.md for completeness, standardized formatting, and actionable content.",
+        "subtasks": [
+          {
+            "title": "Create documentation template for data science & analytics consultation",
+            "description": "Develop a standardized markdown template for .taskmaster/docs/expert-consultations/data-analytics-consultation.md with required sections.",
+            "status": "pending"
+          },
+          {
+            "title": "Populate documentation with expert profiles, research findings, and recommendations",
+            "description": "Aggregate and format all consultation outputs into the standardized documentation, ensuring direct quotes, actionable recommendations, and next steps are included.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "Blockchain & Web3 Expert Consultation for L2 Integration",
+        "description": "Conduct research with blockchain developers, DeFi experts, and Web3 product managers to design secure and efficient blockchain integration using L2 solutions (Polygon or Base) for verifiable gameplay, transparent leaderboards, and trustless prize distribution. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/blockchain-web3-consultation.md using a standardized format for easy reference by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          23,
+          17,
+          24,
+          28,
+          29
+        ],
+        "priority": "low",
+        "details": "1. Identify and recruit a panel of experts:\n   - Blockchain developers with L2 solution experience (Polygon and Base)\n   - DeFi experts familiar with smart contract development and gas optimization\n   - Web3 product managers with experience in mainstream user adoption\n\n2. Prepare comprehensive briefing materials:\n   - Current blockchain integration design (from Task 23)\n   - Game mechanics requiring blockchain verification\n   - User experience considerations for non-crypto users\n\n3. Conduct structured workshops and interviews focusing on:\n   - L2 solution comparison (Polygon vs Base) for game requirements\n   - Smart contract design for verifiable gameplay and leaderboards\n   - Gas optimization strategies for frequent transactions\n   - Decentralized storage solutions for game state and user data\n   - User experience design for seamless Web3 integration\n   - Security best practices for smart contracts and wallet integration\n\n4. Develop detailed recommendations for:\n   - L2 platform selection with pros and cons analysis\n   - Smart contract architecture for game mechanics\n   - Gas optimization techniques and transaction batching\n   - Decentralized storage implementation (e.g., IPFS, Arweave)\n   - Wallet integration and onboarding flow for new users\n   - Security measures and audit processes\n\n5. Create implementation roadmap:\n   - Prioritize features based on criticality and complexity\n   - Outline development phases and milestones\n   - Identify potential challenges and mitigation strategies\n\n6. Establish ongoing consultation framework:\n   - Set up regular check-ins with key experts during implementation\n   - Create a process for addressing emerging blockchain and Web3 challenges\n7. Save all research findings, expert feedback, and recommendations in .taskmaster/docs/expert-consultations/blockchain-web3-consultation.md, using the following standardized sections: 1) Expert Profiles & Credentials, 2) Domain-Specific Research Findings, 3) Technical/Implementation Recommendations, 4) Implementation Guidelines for specific tasks, 5) Testing & Validation Methods, 6) Best Practices, 7) References & Sources. Format for easy reference by implementation teams, including direct quotes, specific recommendations, and actionable next steps.",
+        "testStrategy": "1. Expert review validation:\n   - Ensure at least three recognized experts in blockchain, DeFi, and Web3 have reviewed and approved the final recommendations\n   - Document all expert feedback and map to specific design decisions\n\n2. Technical feasibility assessment:\n   - Implement proof-of-concept smart contracts on testnet environments for both Polygon and Base\n   - Conduct gas usage analysis and compare with project requirements\n   - Test decentralized storage solutions with sample game data\n   - Verify wallet integration across multiple providers (MetaMask, WalletConnect, etc.)\n\n3. Security and audit planning:\n   - Develop a comprehensive smart contract audit strategy\n   - Identify reputable third-party auditors for final implementation review\n\n4. User experience testing:\n   - Create user flow prototypes for blockchain interactions\n   - Conduct usability tests with both crypto-native and non-crypto users\n   - Measure and optimize onboarding friction for new Web3 users\n\n5. Performance benchmarking:\n   - Simulate high-load scenarios to test L2 solution scalability\n   - Measure transaction confirmation times and costs under various network conditions\n\n6. Compliance and regulatory check:\n   - Review recommendations against relevant regulations (e.g., gambling laws, KYC requirements)\n   - Ensure proposed solutions comply with platform policies (App Store, Google Play)\n\n7. Integration testing:\n   - Verify compatibility of recommended solutions with existing game architecture\n   - Test interoperability between blockchain components and centralized systems\n\n8. Documentation review:\n   - Ensure all recommendations, technical specifications, and implementation guidelines are clearly documented\n   - Validate that documentation is sufficient for the development team to proceed with implementation\n   - Review .taskmaster/docs/expert-consultations/blockchain-web3-consultation.md for completeness, standardized formatting, and actionable content.",
+        "subtasks": [
+          {
+            "title": "Create documentation template for blockchain & Web3 consultation",
+            "description": "Develop a standardized markdown template for .taskmaster/docs/expert-consultations/blockchain-web3-consultation.md with required sections.",
+            "status": "pending"
+          },
+          {
+            "title": "Populate documentation with expert profiles, research findings, and recommendations",
+            "description": "Aggregate and format all consultation outputs into the standardized documentation, ensuring direct quotes, actionable recommendations, and next steps are included.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "title": "Legal & Regulatory Expert Consultation and Compliance Framework",
+        "description": "Engage technology lawyers, regulatory compliance experts, and privacy specialists to ensure the game meets legal requirements across jurisdictions, including GDPR/CCPA, educational software, payment processing, blockchain, and international content distribution laws. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/legal-regulatory-consultation.md using a standardized format for easy reference by implementation teams.",
+        "status": "pending",
+        "dependencies": [
+          17,
+          23,
+          12
+        ],
+        "priority": "medium",
+        "details": "1. Identify and retain qualified legal professionals with expertise in technology law, privacy (GDPR/CCPA), educational content regulation, payment processing, blockchain compliance, and international distribution.\n2. Conduct structured interviews and workshops to map legal requirements for each domain, focusing on areas such as AI-generated content copyright, user data privacy, age-appropriate content, and cross-border payment regulations.\n3. Collaborate with experts to draft compliant Terms of Service and Privacy Policy documents tailored to the game's features and jurisdictions.\n4. Analyze and document regulatory requirements for blockchain integration (including KYC/AML, digital asset handling, and prize distribution), referencing relevant FATF and EU AI Act guidelines.\n5. Develop a matrix mapping game features to applicable legal requirements, highlighting jurisdictional differences and risk areas.\n6. Create a set of realistic regulatory scenarios for in-game use, ensuring educational and entertainment value while accurately reflecting real-world legal challenges.\n7. Review all findings with the development team to inform system design and scenario writing, and update documentation as regulations evolve.\n8. Save all research findings, expert feedback, and recommendations in .taskmaster/docs/expert-consultations/legal-regulatory-consultation.md, using the following standardized sections: 1) Expert Profiles & Credentials, 2) Domain-Specific Research Findings, 3) Technical/Implementation Recommendations, 4) Implementation Guidelines for specific tasks, 5) Testing & Validation Methods, 6) Best Practices, 7) References & Sources. Format for easy reference by implementation teams, including direct quotes, specific recommendations, and actionable next steps.",
+        "testStrategy": "- Verify that all legal documents (Terms of Service, Privacy Policy) are reviewed and approved by qualified legal counsel for each target jurisdiction.\n- Conduct compliance audits for GDPR/CCPA, educational software regulations, payment processing, and blockchain features, using checklists developed with legal experts.\n- Test in-game regulatory scenarios for accuracy and educational value by having legal professionals review scenario scripts.\n- Ensure all AI-generated content is labeled and managed in accordance with EU AI Act and copyright requirements.\n- Validate that payment and blockchain systems meet KYC/AML and digital asset handling standards.\n- Review and update compliance documentation as new regulations or guidance emerge.\n- Review .taskmaster/docs/expert-consultations/legal-regulatory-consultation.md for completeness, standardized formatting, and actionable content.",
+        "subtasks": [
+          {
+            "title": "Create documentation template for legal & regulatory consultation",
+            "description": "Develop a standardized markdown template for .taskmaster/docs/expert-consultations/legal-regulatory-consultation.md with required sections.",
+            "status": "pending"
+          },
+          {
+            "title": "Populate documentation with expert profiles, research findings, and recommendations",
+            "description": "Aggregate and format all consultation outputs into the standardized documentation, ensuring direct quotes, actionable recommendations, and next steps are included.",
+            "status": "pending"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-30T15:03:34.162Z",
+      "updated": "2025-06-30T17:10:20.461Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
