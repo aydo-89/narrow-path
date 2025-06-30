@@ -1019,7 +1019,7 @@
         "id": 24,
         "title": "Conduct Expert Consultation on AI Safety & Risk Assessment Frameworks",
         "description": "Engage leading AI safety and risk assessment experts to validate the philosophical, technical, and narrative frameworks underpinning existential risk modeling, dual-axis risk systems, scenario realism, and authentic dialogue for researchers and policymakers. Ensure all research findings and consultation results are comprehensively documented in a standardized format for future reference and implementation.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           16,
           18,
@@ -1053,7 +1053,7 @@
         "id": 25,
         "title": "Conduct Game Design & UX Expert Consultation for Choice Architecture and Engagement Systems",
         "description": "Engage experienced game designers and UX experts to review and optimize the game's choice architecture, decision theater systems, player engagement mechanics, educational design, and viral sharing features, ensuring meaningful, non-manipulative choices and effective AI safety education. All findings and recommendations from the consultation process must be comprehensively documented in .taskmaster/docs/expert-consultations/game-design-consultation.md, structured for easy reference by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           6,
           18,
@@ -1096,7 +1096,7 @@
         "id": 26,
         "title": "Conduct Expert Consultation on Behavioral Science for AI Risk and Decision Modeling",
         "description": "Engage with behavioral psychologists and decision-making experts to research cognitive biases, risk assessment, and educational psychology principles for optimizing AI opponent behaviors, choice presentation, and psychologically realistic character motivations. Ensure all findings are comprehensively documented and structured for implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           5,
           7,
@@ -1130,7 +1130,7 @@
         "id": 27,
         "title": "Conduct Political Science & Geopolitics Expert Consultation for Realistic Governmental and Diplomatic Modeling",
         "description": "Engage political scientists, international relations experts, and policy analysts to ensure the game's governmental responses, diplomatic scenarios, regulatory processes, and world leader behaviors are realistic and credible, with a focus on authentic policy timelines and international cooperation challenges. Implement a comprehensive documentation strategy to capture all expert consultation findings in .taskmaster/docs/expert-consultations/political-science-consultation.md, structured for easy reference and actionable use by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           5,
           12,
@@ -1173,7 +1173,7 @@
         "id": 28,
         "title": "Conduct Technology & Cybersecurity Expert Consultation for Deepfake, AI, and Cyber Threat Realism",
         "description": "Engage cybersecurity experts, AI engineers, and technology analysts to ensure the game's depiction of deepfake technology, AI capabilities, cyber threats, technical dialogue, and future technology scenarios is accurate, credible, and up-to-date. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/technology-cybersecurity-consultation.md using a standardized format for easy reference by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           5,
           12,
