@@ -1201,7 +1201,7 @@
         "id": 29,
         "title": "Economics & Monetization Expert Consultation",
         "description": "Conduct research with behavioral economists, game monetization experts, and fintech specialists to optimize the $1-per-play pricing model, design educational progression incentives, create sustainable revenue streams, and develop fair prize competition mechanics. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/economics-monetization-consultation.md using a standardized format for easy reference by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           15,
           17,
@@ -1227,7 +1227,7 @@
         "id": 30,
         "title": "Education & Learning Theory Expert Consultation",
         "description": "Engage educational researchers, learning scientists, and instructional designers to maximize the game's educational impact, optimize knowledge retention, design effective progression systems, and create meaningful assessment mechanisms based on adult learning and experiential education theory. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/education-learning-consultation.md using a standardized format for easy reference by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           1,
           25,
@@ -1253,7 +1253,7 @@
         "id": 31,
         "title": "Conduct Data Science & Analytics Expert Consultation for Player Behavior Tracking and Metrics",
         "description": "Engage data scientists, machine learning engineers, and analytics specialists to design robust player behavior tracking systems, develop meaningful performance metrics, predictive models for learning outcomes, and privacy-preserving analytics with a focus on ethical data collection and leaderboard fairness. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/data-analytics-consultation.md using a standardized format for easy reference by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           20,
           26
@@ -1278,7 +1278,7 @@
         "id": 32,
         "title": "Blockchain & Web3 Expert Consultation for L2 Integration",
         "description": "Conduct research with blockchain developers, DeFi experts, and Web3 product managers to design secure and efficient blockchain integration using L2 solutions (Polygon or Base) for verifiable gameplay, transparent leaderboards, and trustless prize distribution. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/blockchain-web3-consultation.md using a standardized format for easy reference by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           23,
           17,
@@ -1306,7 +1306,7 @@
         "id": 33,
         "title": "Legal & Regulatory Expert Consultation and Compliance Framework",
         "description": "Engage technology lawyers, regulatory compliance experts, and privacy specialists to ensure the game meets legal requirements across jurisdictions, including GDPR/CCPA, educational software, payment processing, blockchain, and international content distribution laws. All research findings and recommendations must be documented in .taskmaster/docs/expert-consultations/legal-regulatory-consultation.md using a standardized format for easy reference by implementation teams.",
-        "status": "pending",
+        "status": "completed",
         "dependencies": [
           17,
           23,
